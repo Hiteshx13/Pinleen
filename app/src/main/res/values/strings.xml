@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Pinleen</string>
+    <string name="read_privacy">Read Our Privacy Policy. Tap \"Agree and \ncontinue\" to accep the Our Privacy.</string>
+    <string name="welcome_to_">Welcome to</string>
+    <string name="agree_and_continue">Agree and continue</string>
+    <string name="register">Register</string>
+    <string name="let_s_setup_your_account">Let’s setup your account</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="i_m_at_least_18_years_old_and_agree_to_the_following_terms">I\'m at least 18 years old and agree to the following terms</string>
+    <string name="i_ve_read_and_agree_to_the_e_sign_disclosure_and_consent_to_receive_all_communications_electronically">I\'ve read and agree to the E-Sign Disclosure and Consent to receive all communications electronically</string>
+    <string name="verify_code">Verify Code</string>
+    <string name="please_enter_the_code_we_just_sent_to_email">Please enter the code we just sent to email</string>
+    <string name="resend_code_in">Resend Code in</string>
+    <string name="confirm">Confirm</string>
+    <string name="your_account_has_been_verified_succesfully_now_let_s_enjoy_pinleen_s_features">Your account has been verified succesfully, \nnow let’s enjoy Pinleen’s features!</string>
+    <string name="get_started">Get Started</string>
+    <string name="choose_profile_picture">Choose profile picture</string>
+    <string name="upload">Upload</string>
+    <string name="skip_for_now">Skip for now</string>
+    <string name="rotate_camera">Rotate Camera</string>
+    <string name="done">Done</string>
+    <string name="delete">Delete</string>
+</resources>
