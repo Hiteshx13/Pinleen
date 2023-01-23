@@ -33,7 +33,6 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
         binding.btnConfirm.setOnClickListener {
             val intent = Intent(this, SignUpVerificationSuccessActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.ivback.setOnClickListener {

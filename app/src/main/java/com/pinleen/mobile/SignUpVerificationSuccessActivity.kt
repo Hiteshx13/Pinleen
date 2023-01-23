@@ -14,7 +14,6 @@ class SignUpVerificationSuccessActivity : BaseActivity<ActivitySignupVerificatio
         binding.btnGetStarted.setOnClickListener {
             val intent = Intent(this, FaceVerificationActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 

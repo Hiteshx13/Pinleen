@@ -51,7 +51,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
             startActivity(intent)
             finish()
         }
-        binding.btnDone.setOnClickListener {
+        binding.llButtonDone.setOnClickListener {
             takePhoto()
         }
         binding.ivOpenCamera.setOnClickListener {
@@ -100,19 +100,6 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                 .also {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
-
-
-            /*
-            val imageAnalyzer = ImageAnalysis.Builder().build()
-                .also {
-                    setAnalyzer(
-                        cameraExecutor,
-                        LuminosityAnalyzer { luma ->
-                            Log.d(TAG, "Average luminosity: $luma")
-                        }
-                    )
-                }
-            */
 
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -172,6 +159,9 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                         onImageSaved(output: ImageCapture.OutputFileResults) {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                    binding.ivProfileImage.setImageURI(output.savedUri)
+                    binding.viewFinder.visibility=View.INVISIBLE
+                    binding.llButtonRotateCamera.visibility=View.INVISIBLE
                     Log.d(TAG, msg)
                 }
             }

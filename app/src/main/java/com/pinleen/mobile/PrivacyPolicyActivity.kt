@@ -42,7 +42,6 @@ class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
         binding.btnAgreeAndContinue.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
