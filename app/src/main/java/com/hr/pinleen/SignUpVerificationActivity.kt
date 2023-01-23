@@ -1,5 +1,6 @@
 package com.hr.pinleen
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -31,11 +32,9 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
         }
 
         binding.btnConfirm.setOnClickListener {
-//            val email = binding.etEmail.text
-//            val intent = Intent(this, ActivitySignupVerificationCodeBinding::class.java)
-//            intent.putExtra("", email)
-//            startActivity(intent)
-//            finish()
+            val intent = Intent(this, SignUpVerificationSuccessActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
