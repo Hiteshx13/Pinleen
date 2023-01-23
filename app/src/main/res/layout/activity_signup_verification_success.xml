@@ -12,9 +12,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ic_message"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvWelcome"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_20ssp"
             android:layout_marginTop="@dimen/_40sdp"
-            tools:text="Account Verified" />
+            android:text="@string/account_verified" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvReadPrivacy"

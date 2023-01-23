@@ -1,12 +1,12 @@
-package com.hr.pinleen
+package com.pinleen.mobile
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
-import com.hr.pinleen.databinding.ActivitySplashBinding
-import com.hr.pinleen.ui.base.BaseActivity
+import com.pinleen.mobile.databinding.ActivitySplashBinding
+import com.pinleen.mobile.ui.base.BaseActivity
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 

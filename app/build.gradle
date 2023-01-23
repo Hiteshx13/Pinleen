@@ -8,7 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.hr.pinleen"
+        applicationId "com.pinleen.mobile"
         minSdk 28
         targetSdk 32
         versionCode 1

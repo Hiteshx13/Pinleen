@@ -22,4 +22,7 @@
     <string name="rotate_camera">Rotate Camera</string>
     <string name="done">Done</string>
     <string name="delete">Delete</string>
+    <string name="url_privacy">https://www.pinleen.com/privacy.txt</string>
+    <string name="account_verified">Account Verified</string>
+    <string name="email">Email</string>
 </resources>

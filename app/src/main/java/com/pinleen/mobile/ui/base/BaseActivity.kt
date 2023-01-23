@@ -1,4 +1,4 @@
-package com.hr.pinleen.ui.base
+package com.pinleen.mobile.ui.base
 
 import android.content.Context
 import android.content.Intent

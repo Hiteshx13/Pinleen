@@ -1,17 +1,10 @@
-package com.hr.pinleen
+package com.pinleen.mobile
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.TextPaint
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.LayoutInflater
-import android.view.View
-import com.hr.pinleen.databinding.ActivitySignupVerificationSuccessBinding
-import com.hr.pinleen.ui.base.BaseActivity
+import com.pinleen.mobile.databinding.ActivitySignupVerificationSuccessBinding
+import com.pinleen.mobile.ui.base.BaseActivity
 
 
 class SignUpVerificationSuccessActivity : BaseActivity<ActivitySignupVerificationSuccessBinding>() {

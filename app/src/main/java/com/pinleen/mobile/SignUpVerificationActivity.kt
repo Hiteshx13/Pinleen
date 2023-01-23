@@ -1,21 +1,15 @@
-package com.hr.pinleen
+package com.pinleen.mobile
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.lifecycle.lifecycleScope
-import com.hr.pinleen.databinding.ActivitySignupVerificationCodeBinding
-import com.hr.pinleen.ui.base.BaseActivity
-import com.hr.pinleen.utils.Constents.PARAM_EMAIL
-import com.hr.pinleen.utils.TextWatcher
+import com.pinleen.mobile.databinding.ActivitySignupVerificationCodeBinding
+import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.utils.Constents.PARAM_EMAIL
+import com.pinleen.mobile.utils.TextWatcher
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flow
-import java.time.Duration
-import java.time.LocalDateTime
 
 
 class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBinding>() {
@@ -23,21 +17,29 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val email = intent.getStringExtra(PARAM_EMAIL)
+
+        val email = intent.extras?.get(PARAM_EMAIL)?.toString()
         binding.tvEmail.text=email
+
+        initClickListener()
         setFocus()
 
         lifecycleScope.launchWhenCreated {
             tickerFlow()
         }
+    }
 
+    private fun initClickListener(){
         binding.btnConfirm.setOnClickListener {
             val intent = Intent(this, SignUpVerificationSuccessActivity::class.java)
             startActivity(intent)
             finish()
         }
-    }
 
+        binding.ivback.setOnClickListener {
+            finish()
+        }
+    }
     private fun setFocus() {
        TextWatcher.setWatcher( binding.edtPasscode1, binding.edtPasscode2)
        TextWatcher.setWatcher( binding.edtPasscode2, binding.edtPasscode3)
@@ -47,12 +49,8 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
 
     @ObsoleteCoroutinesApi
     private suspend fun  tickerFlow(){
-        val tickerChannel = ticker(delayMillis = 1_000, initialDelayMillis = 0)
-
         val ticker = ticker(1000, 0)
-
         var count = 61
-
         for (event in ticker) {
             count--
             binding.tvTimer.text="00:$count"
@@ -60,7 +58,6 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
                 break
             }
         }
-
         ticker.cancel()
     }
 

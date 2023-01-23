@@ -1,4 +1,4 @@
-package com.hr.pinleen.ui.base
+package com.pinleen.mobile.ui.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

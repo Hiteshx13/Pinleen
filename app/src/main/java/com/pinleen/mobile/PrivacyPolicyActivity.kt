@@ -1,4 +1,4 @@
-package com.hr.pinleen
+package com.pinleen.mobile
 
 import android.content.Intent
 import android.net.Uri
@@ -10,8 +10,8 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
-import com.hr.pinleen.databinding.ActivityPrivacyPolicyBinding
-import com.hr.pinleen.ui.base.BaseActivity
+import com.pinleen.mobile.databinding.ActivityPrivacyPolicyBinding
+import com.pinleen.mobile.ui.base.BaseActivity
 
 
 class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
@@ -25,7 +25,7 @@ class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(textView: View) {
                 val openURL = Intent(android.content.Intent.ACTION_VIEW)
-                openURL.data = Uri.parse("https://www.google.com/")
+                openURL.data = Uri.parse(resources.getString(R.string.url_privacy))
                 startActivity(openURL)
             }
 

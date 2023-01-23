@@ -1,4 +1,4 @@
-package com.hr.pinleen
+package com.pinleen.mobile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

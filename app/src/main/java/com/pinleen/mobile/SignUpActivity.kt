@@ -1,11 +1,11 @@
-package com.hr.pinleen
+package com.pinleen.mobile
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.hr.pinleen.databinding.ActivitySignupBinding
-import com.hr.pinleen.ui.base.BaseActivity
-import com.hr.pinleen.utils.Constents
+import com.pinleen.mobile.databinding.ActivitySignupBinding
+import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.utils.Constents
 
 
 class SignUpActivity : BaseActivity<ActivitySignupBinding>() {

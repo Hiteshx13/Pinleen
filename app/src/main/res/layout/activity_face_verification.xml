@@ -20,11 +20,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_back" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvChooseProfilePic"
@@ -44,18 +44,16 @@
             android:layout_below="@+id/tvChooseProfilePic"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:orientation="vertical"
-            android:visibility="gone"
-            tools:context=".MainActivity">
+            android:orientation="vertical">
 
 
             <androidx.appcompat.widget.AppCompatImageView
-
+                android:id="@+id/ivOpenCamera"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="@dimen/_250sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_50sdp"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/ic_circle_white_with_face" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpload"
@@ -88,7 +86,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:orientation="vertical"
-            tools:context=".MainActivity">
+            android:visibility="gone">
 
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -97,13 +95,14 @@
                 android:layout_height="@dimen/_250sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_50sdp"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/ic_circle_white" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRotateCamera"
                 style="@style/ButtonGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_camera"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:text="@string/rotate_camera"
                 android:textSize="@dimen/_14ssp" />

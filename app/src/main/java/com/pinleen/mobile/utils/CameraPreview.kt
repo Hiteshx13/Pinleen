@@ -1,4 +1,4 @@
-package com.hr.pinleen.utils
+package com.pinleen.mobile.utils
 
 /** A basic Camera preview class */
 class CameraPreview
