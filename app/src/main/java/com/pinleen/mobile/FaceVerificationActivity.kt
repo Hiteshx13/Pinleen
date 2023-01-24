@@ -25,13 +25,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import androidx.camera.core.AspectRatio
+import androidx.camera.core.AspectRatio.RATIO_4_3
+import android.graphics.Bitmap
+import android.graphics.Canvas
 
 
 class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>() {
 
 
     private lateinit var cameraExecutor: ExecutorService
-    private val imageCapture: ImageCapture = ImageCapture.Builder().build()
+    private val imageCapture: ImageCapture = ImageCapture.Builder().setTargetAspectRatio(RATIO_4_3).build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +56,15 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
             finish()
         }
         binding.llButtonDone.setOnClickListener {
-            takePhoto()
+           // takePhoto()
+
+            val bitmap=binding.viewCameraPrevire.bitmap//getBitmapFromView(binding.viewCameraPrevire)
+            binding.ivProfileImage.setImageBitmap(bitmap)
+            updateUIForImageCapture(true)
+        }
+
+        binding.llButtonDelete.setOnClickListener {
+            updateUIForImageCapture(false)
         }
         binding.ivOpenCamera.setOnClickListener {
             if (allPermissionsGranted()) {
@@ -98,7 +110,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
             val preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                    it.setSurfaceProvider(binding.viewCameraPrevire.surfaceProvider)
                 }
 
             // Select back camera as a default
@@ -121,53 +133,62 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
     }
 
 
-    private fun takePhoto() {
-        // Get a stable reference of the modifiable image capture use case
-        val imageCapture = imageCapture
+//    private fun takePhoto() {
+//        // Get a stable reference of the modifiable image capture use case
+//        val imageCapture = imageCapture
+//
+//        // Create time stamped name and MediaStore entry.
+//        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+//            .format(System.currentTimeMillis())
+//        val contentValues = ContentValues().apply {
+//            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+//            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+//            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+//                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+//            }
+//        }
+//
+//        // Create output options object which contains file + metadata
+//        val outputOptions = ImageCapture.OutputFileOptions
+//            .Builder(
+//                contentResolver,
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                contentValues
+//            )
+//            .build()
+//
+//        // Set up image capture listener, which is triggered after photo has
+//        // been taken
+//        imageCapture.takePicture(
+//            outputOptions,
+//            ContextCompat.getMainExecutor(this),
+//            object : ImageCapture.OnImageSavedCallback {
+//                override fun onError(exc: ImageCaptureException) {
+//                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
+//                }
+//
+//                override fun
+//                        onImageSaved(output: ImageCapture.OutputFileResults) {
+//                    val msg = "Photo capture succeeded: ${output.savedUri}"
+//                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+//                    binding.ivProfileImage.setImageURI(output.savedUri)
+//                    updateUIForImageCapture(true)
+//                    Log.d(TAG, msg)
+//                }
+//            }
+//        )
+//    }
 
-        // Create time stamped name and MediaStore entry.
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
-            .format(System.currentTimeMillis())
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
-            }
+    private fun updateUIForImageCapture(isCaptured: Boolean) {
+
+        if (isCaptured) {
+            binding.viewCameraPrevire.visibility = View.INVISIBLE
+            binding.llButtonRotateCamera.visibility = View.INVISIBLE
+        } else {
+            binding.viewCameraPrevire.visibility = View.VISIBLE
+            binding.llButtonRotateCamera.visibility = View.VISIBLE
         }
-
-        // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(
-                contentResolver,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues
-            )
-            .build()
-
-        // Set up image capture listener, which is triggered after photo has
-        // been taken
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
-
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val msg = "Photo capture succeeded: ${output.savedUri}"
-                    Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    binding.ivProfileImage.setImageURI(output.savedUri)
-                    binding.viewFinder.visibility=View.INVISIBLE
-                    binding.llButtonRotateCamera.visibility=View.INVISIBLE
-                    Log.d(TAG, msg)
-                }
-            }
-        )
     }
-
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
