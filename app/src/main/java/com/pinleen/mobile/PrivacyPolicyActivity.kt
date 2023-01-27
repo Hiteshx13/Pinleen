@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.pinleen.mobile.databinding.ActivityPrivacyPolicyBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.ui.feature.signup.SignUpRegisterEmailActivity
 
 
 class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
@@ -34,17 +35,18 @@ class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
                 ds.isUnderlineText = true
             }
         }
-        ss.setSpan(clickableSpan, ss.length - 12, ss.length , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(clickableSpan, ss.length - 12, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvReadPrivacy.text = ss
         binding.tvReadPrivacy.movementMethod = LinkMovementMethod.getInstance()
-
-
-        binding.btnAgreeAndContinue.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override val bindingInflater: (LayoutInflater) -> ActivityPrivacyPolicyBinding
         get() = ActivityPrivacyPolicyBinding::inflate
+
+    override fun initClickListener() {
+        binding.btnAgreeAndContinue.setOnClickListener {
+            val intent = Intent(this, SignUpRegisterEmailActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

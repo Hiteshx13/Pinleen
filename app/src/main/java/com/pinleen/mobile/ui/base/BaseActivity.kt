@@ -20,6 +20,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _viewBinding = bindingInflater(layoutInflater)
         setContentView(_viewBinding!!.root)
+        initClickListener()
     }
 
     protected fun showError(errorMessage: String) {
@@ -27,6 +28,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
     }
 
+    abstract fun initClickListener()
     /**
      * Extension for smarter launching of Activities
      */
@@ -34,6 +36,10 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     fun launchActivity(context: Context, destination: AppCompatActivity) {
         val intent = Intent(context, destination::class.java)
         startActivity(intent)
+    }
+
+    fun showToast(message:String){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show()
     }
 
 }

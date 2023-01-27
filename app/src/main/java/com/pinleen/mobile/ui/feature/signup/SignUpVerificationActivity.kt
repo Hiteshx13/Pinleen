@@ -1,4 +1,4 @@
-package com.pinleen.mobile
+package com.pinleen.mobile.ui.feature.signup
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import androidx.lifecycle.lifecycleScope
 import com.pinleen.mobile.databinding.ActivitySignupVerificationCodeBinding
 import com.pinleen.mobile.ui.base.BaseActivity
-import com.pinleen.mobile.utils.Constents.PARAM_EMAIL
+import com.pinleen.mobile.utils.Constants.PARAM_EMAIL
 import com.pinleen.mobile.utils.TextWatcher
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
@@ -29,7 +29,7 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
         }
     }
 
-    private fun initClickListener(){
+    override fun initClickListener(){
         binding.btnConfirm.setOnClickListener {
             val intent = Intent(this, SignUpVerificationSuccessActivity::class.java)
             startActivity(intent)

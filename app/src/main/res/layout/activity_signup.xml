@@ -31,33 +31,44 @@
                 android:text="@string/create_an_account"
                 android:textSize="@dimen/_10ssp" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                style="@style/EditTextSignUp"
-                android:inputType="textPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_43sdp"
-                android:hint="@string/first_name"
-                tools:text="Jack" />
+            <!--            <androidx.appcompat.widget.AppCompatEditText-->
+            <!--                style="@style/EditTextSignUp"-->
+            <!--                android:inputType="textPersonName"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="@dimen/_43sdp"-->
+            <!--                android:hint="@string/first_name"-->
+            <!--                tools:text="Jack" />-->
+
+            <!--            <androidx.appcompat.widget.AppCompatEditText-->
+            <!--                style="@style/EditTextSignUp"-->
+            <!--                android:inputType="textPersonName"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="@dimen/_10sdp"-->
+            <!--                android:hint="@string/last_name"-->
+            <!--                tools:text="Sparrow" />-->
 
             <androidx.appcompat.widget.AppCompatEditText
-                style="@style/EditTextSignUp"
-                android:inputType="textPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/last_name"
-                tools:text="Sparrow" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                style="@style/EditTextSignUp"
                 android:id="@+id/etEmail"
-                android:inputType="textEmailAddress"
+                style="@style/EditTextSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:hint="@string/email"
+                android:inputType="textEmailAddress"
                 tools:text="sparrow@pinleen.com" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPassword"
+                style="@style/EditTextSignUp"
+                android:layout_width="match_parent"
+                android:text="123Jack00707"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/create_password"
+                android:inputType="textPassword"
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextGrayDark"

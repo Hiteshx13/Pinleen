@@ -25,4 +25,14 @@
     <string name="url_privacy">https://www.pinleen.com/privacy.txt</string>
     <string name="account_verified">Account Verified</string>
     <string name="email">Email</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="permission_required_text">Please grant allrequired permission from application settings</string>
+    <string name="please_grant_all_required_permission_from_application_settings">Please grant all required permission from application settings.</string>
+    <string name="open_settings">Open settings</string>
+    <string name="message_camera_permission">Camera permission is required to capture image. please grant permission for it.</string>
+    <string name="grant">Grant</string>
+    <string name="create_password">Create Password</string>
+
 </resources>

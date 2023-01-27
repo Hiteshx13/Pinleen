@@ -21,4 +21,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override val bindingInflater: (LayoutInflater) -> ActivitySplashBinding
         get() = ActivitySplashBinding::inflate
+
+
+    override fun initClickListener() {
+
+    }
 }

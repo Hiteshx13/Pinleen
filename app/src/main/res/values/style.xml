@@ -54,7 +54,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">@dimen/_10sdp</item>
         <item name="android:paddingBottom">@dimen/_10sdp</item>
-        <item name="android:background">@drawable/bg_button_green_rounded</item>
+        <item name="android:background">@drawable/selector_green</item>
     </style>
 
     <style name="ButtonGray">
@@ -66,12 +66,16 @@
         <item name="android:background">@drawable/bg_button_gray_rounded</item>
     </style>
 
-    <style name="ButtonBlack">
+    <style name="ButtonBlackLight">
         <item name="android:textColor">@color/colorRed</item>
         <item name="android:fontFamily">@font/nunito_sans_bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">@dimen/_10sdp</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
         <item name="android:paddingBottom">@dimen/_10sdp</item>
         <item name="android:background">@drawable/bg_button_black_light_rounded</item>
     </style>
+
+
 </resources>

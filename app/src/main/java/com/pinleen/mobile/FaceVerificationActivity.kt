@@ -1,41 +1,48 @@
 package com.pinleen.mobile
 
-import android.Manifest
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.core.AspectRatio.RATIO_4_3
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.common.util.concurrent.ListenableFuture
 import com.pinleen.mobile.databinding.ActivityFaceVerificationBinding
 import com.pinleen.mobile.ui.base.BaseActivity
-import com.pinleen.mobile.utils.Constents.REQUEST_CODE_CAMERA
-import java.text.SimpleDateFormat
-import java.util.*
+import com.pinleen.mobile.utils.*
+import com.pinleen.mobile.utils.Constants.REQUEST_CODE_CAMERA
+import com.pinleen.mobile.utils.PermissionManager.Permission
+import com.pinleen.mobile.utils.RealPathUtil.getRealPath
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import androidx.camera.core.AspectRatio
-import androidx.camera.core.AspectRatio.RATIO_4_3
-import android.graphics.Bitmap
-import android.graphics.Canvas
 
 
 class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>() {
 
 
+    private val permissionManager = PermissionManager.from(this)
+    private var lensFacing = CameraSelector.DEFAULT_BACK_CAMERA
+    private val cameraProviderFuture: ListenableFuture<ProcessCameraProvider> by lazy {
+        ProcessCameraProvider.getInstance(this)
+    }
     private lateinit var cameraExecutor: ExecutorService
-    private val imageCapture: ImageCapture = ImageCapture.Builder().setTargetAspectRatio(RATIO_4_3).build()
+    private val imageCapture: ImageCapture by lazy {
+        ImageCapture.Builder().setTargetAspectRatio(RATIO_4_3).build()
+    }
+
+    val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        binding.ivProfileImage.setImageURI(Uri.parse(getRealPath(this, it!!)))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,19 +53,28 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
     }
 
 
-    private fun initClickListener() {
+    override fun initClickListener() {
         binding.ivBack.setOnClickListener {
             finish()
         }
         binding.btnUpload.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-            finish()
+//            val intent = Intent(this, SignUpActivity::class.java)
+//            startActivity(intent)
+//            finish()
+        }
+
+        binding.llButtonRotateCamera.setOnClickListener {
+            if (lensFacing === androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA) lensFacing =
+                CameraSelector.DEFAULT_BACK_CAMERA else if (lensFacing === androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA) lensFacing =
+                CameraSelector.DEFAULT_FRONT_CAMERA
+
+            startCamera()
         }
         binding.llButtonDone.setOnClickListener {
-           // takePhoto()
+            // takePhoto()
 
-            val bitmap=binding.viewCameraPrevire.bitmap//getBitmapFromView(binding.viewCameraPrevire)
+            val bitmap =
+                binding.viewCameraPrevire.bitmap//getBitmapFromView(binding.viewCameraPrevire)
             binding.ivProfileImage.setImageBitmap(bitmap)
             updateUIForImageCapture(true)
         }
@@ -67,41 +83,53 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
             updateUIForImageCapture(false)
         }
         binding.ivOpenCamera.setOnClickListener {
-            if (allPermissionsGranted()) {
-                binding.llUpload.visibility = View.GONE
-                binding.llCameraButton.visibility = View.VISIBLE
-                startCamera()
-            } else {
-                ActivityCompat.requestPermissions(
-                    this, REQUIRED_PERMISSIONS, REQUEST_CODE_CAMERA
-                )
-            }
+
+            showMessageDialog(this, true, object : ItemClickCameraDialog {
+
+                override fun onClickGallery() {
+                    contract.launch("image/*")
+                }
+
+                override fun onClickCamera() {
+                    permissionManager
+                        .request(Permission.Camera)
+                        .rationale(getString(R.string.message_camera_permission))
+                        .checkDetailedPermission { result: Map<Permission, Boolean> ->
+                            if (result.all { it.value }) {
+                                binding.llUpload.visibility = View.GONE
+                                binding.llCameraButton.visibility = View.VISIBLE
+                                startCamera()
+                            } else {
+                                showPermissionDialog(
+                                    baseContext ,
+                                    getString(R.string.please_grant_all_required_permission_from_application_settings),
+                                    object : ItemClickPermission {
+                                        override fun onClickSettings() {
+                                            val intent =
+                                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                            val uri = Uri.fromParts("package", packageName, null)
+                                            intent.data = uri
+                                            startActivity(intent)
+                                        }
+                                    }
+                                )
+                              }
+                        }
+                }
+            })
         }
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            baseContext, it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
 
     companion object {
-        private const val TAG = "CameraXApp"
+        private const val TAG = "Pinleen"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
 
-        private val REQUIRED_PERMISSIONS =
-            mutableListOf(
-                Manifest.permission.CAMERA,
-            ).apply {
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                }
-            }.toTypedArray()
+
     }
 
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
+    private fun startCamera() {
         cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -113,16 +141,13 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                     it.setSurfaceProvider(binding.viewCameraPrevire.surfaceProvider)
                 }
 
-            // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
             try {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture
+                    this, lensFacing, preview, imageCapture
                 )
 
             } catch (exc: Exception) {
@@ -231,3 +256,5 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
     override val bindingInflater: (LayoutInflater) -> ActivityFaceVerificationBinding
         get() = ActivityFaceVerificationBinding::inflate
 }
+
+

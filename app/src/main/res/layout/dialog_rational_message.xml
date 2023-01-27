@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center"
+        android:padding="@dimen/_20sdp"
+        android:background="@drawable/bg_button_gray_rounded"
+        android:orientation="vertical"
+        android:backgroundTintMode="src_over"
+        android:paddingBottom="@dimen/_20sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Message"
+            android:gravity="center"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            style="@style/TextWhiteNormal"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOpenSettings"
+            style="@style/ButtonBlackLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_settings"
+            android:textSize="@dimen/_9ssp"
+            android:textColor="@color/colorBlue" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancel"
+            style="@style/ButtonBlackLight"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_9ssp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@string/cancel"
+            android:textColor="@color/colorBlue" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

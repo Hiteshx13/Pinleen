@@ -4,12 +4,15 @@
     <color name="colorPrimaryVariant">#FFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="blackTrans20">#33000000</color>
+    <color name="blackTrans90">#90000000</color>
     <color name="colorGray">#808D9E</color>
     <color name="colorGrayDark">#656565</color>
     <color name="colorBlackLight">#1E1E1E</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorRed">#FD443A</color>
     <color name="linkColor">#5d5be3</color>
+    <color name="colorBlue">#1668E3</color>
     <color name="colorGreenButton">#00E08F</color>
+    <color name="colorGreenLight">#97D6BF</color>
     <color name="colorTransWhite10">#1AFFFFFF</color>
 </resources>
