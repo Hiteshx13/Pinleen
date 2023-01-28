@@ -2,6 +2,7 @@ package com.pinleen.mobile
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -22,7 +23,6 @@ import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.utils.*
 import com.pinleen.mobile.utils.Constants.REQUEST_CODE_CAMERA
 import com.pinleen.mobile.utils.PermissionManager.Permission
-import com.pinleen.mobile.utils.RealPathUtil.getRealPath
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -41,49 +41,55 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
     }
 
     val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        binding.ivProfileImage.setImageURI(Uri.parse(getRealPath(this, it!!)))
+        it.let {
+            val inputStream = contentResolver.openInputStream(it!!)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            binding.ivProfileImage.setImageBitmap(bitmap)
+            binding.llSelectPicture.visibility = View.GONE
+            binding.llCameraButtons.visibility = View.VISIBLE
+        }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        initClickListener()
+        initListener()
         cameraExecutor = Executors.newSingleThreadExecutor()
-
     }
 
 
-    override fun initClickListener() {
+    override fun initListener() {
         binding.ivBack.setOnClickListener {
             finish()
         }
-        binding.btnUpload.setOnClickListener {
-//            val intent = Intent(this, SignUpActivity::class.java)
-//            startActivity(intent)
-//            finish()
-        }
 
         binding.llButtonRotateCamera.setOnClickListener {
-            if (lensFacing === androidx.camera.core.CameraSelector.DEFAULT_FRONT_CAMERA) lensFacing =
+            if (lensFacing ===CameraSelector.DEFAULT_FRONT_CAMERA) lensFacing =
                 CameraSelector.DEFAULT_BACK_CAMERA else if (lensFacing === androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA) lensFacing =
                 CameraSelector.DEFAULT_FRONT_CAMERA
-
             startCamera()
         }
-        binding.llButtonDone.setOnClickListener {
-            // takePhoto()
 
-            val bitmap =
-                binding.viewCameraPrevire.bitmap//getBitmapFromView(binding.viewCameraPrevire)
+        binding.llCapture.setOnClickListener {
+            val bitmap = binding.viewCameraPrevire.bitmap
             binding.ivProfileImage.setImageBitmap(bitmap)
-            updateUIForImageCapture(true)
+            binding.llCameraOverlay.visibility = View.GONE
+            binding.viewCameraPrevire.visibility = View.GONE
+            binding.llCameraButtons.visibility = View.VISIBLE
         }
 
         binding.llButtonDelete.setOnClickListener {
-            updateUIForImageCapture(false)
+            binding.ivProfileImage.setImageDrawable(null)
+            binding.llSelectPicture.visibility=View.VISIBLE
+            binding.llCameraOverlay.visibility=View.GONE
+            binding.llCameraButtons.visibility=View.GONE
         }
-        binding.ivOpenCamera.setOnClickListener {
 
+        binding.llButtonDone.setOnClickListener {
+
+        }
+
+        binding.btnSelectPicture.setOnClickListener {
             showMessageDialog(this, true, object : ItemClickCameraDialog {
 
                 override fun onClickGallery() {
@@ -96,12 +102,13 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                         .rationale(getString(R.string.message_camera_permission))
                         .checkDetailedPermission { result: Map<Permission, Boolean> ->
                             if (result.all { it.value }) {
-                                binding.llUpload.visibility = View.GONE
-                                binding.llCameraButton.visibility = View.VISIBLE
                                 startCamera()
+                                binding.llSelectPicture.visibility = View.GONE
+                                binding.llCameraOverlay.visibility = View.VISIBLE
+                                binding.viewCameraPrevire.visibility = View.VISIBLE
                             } else {
                                 showPermissionDialog(
-                                    baseContext ,
+                                    baseContext,
                                     getString(R.string.please_grant_all_required_permission_from_application_settings),
                                     object : ItemClickPermission {
                                         override fun onClickSettings() {
@@ -113,7 +120,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                                         }
                                     }
                                 )
-                              }
+                            }
                         }
                 }
             })
@@ -124,8 +131,6 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
     companion object {
         private const val TAG = "Pinleen"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-
-
     }
 
 
@@ -204,16 +209,6 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
 //        )
 //    }
 
-    private fun updateUIForImageCapture(isCaptured: Boolean) {
-
-        if (isCaptured) {
-            binding.viewCameraPrevire.visibility = View.INVISIBLE
-            binding.llButtonRotateCamera.visibility = View.INVISIBLE
-        } else {
-            binding.viewCameraPrevire.visibility = View.VISIBLE
-            binding.llButtonRotateCamera.visibility = View.VISIBLE
-        }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -227,24 +222,14 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                             grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 ) {
                     startCamera()
-                    // Permission is granted. Continue the action or workflow
-                    // in your app.
-
                 } else {
                     Toast.makeText(
                         this, "Allow all required permission from app settings.",
                         Toast.LENGTH_LONG
                     ).show()
-                    // Explain to the user that the feature is unavailable because
-                    // the feature requires a permission that the user has denied.
-                    // At the same time, respect the user's decision. Don't link to
-                    // system settings in an effort to convince the user to change
-                    // their decision.
                 }
                 return
             }
-
-
         }
     }
 

@@ -23,7 +23,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         get() = ActivitySplashBinding::inflate
 
 
-    override fun initClickListener() {
+    override fun initListener() {
 
     }
 }

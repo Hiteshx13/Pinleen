@@ -43,7 +43,7 @@ class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
     override val bindingInflater: (LayoutInflater) -> ActivityPrivacyPolicyBinding
         get() = ActivityPrivacyPolicyBinding::inflate
 
-    override fun initClickListener() {
+    override fun initListener() {
         binding.btnAgreeAndContinue.setOnClickListener {
             val intent = Intent(this, SignUpRegisterEmailActivity::class.java)
             startActivity(intent)

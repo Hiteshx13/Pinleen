@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,7 +10,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivProfileImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <androidx.camera.view.PreviewView
             android:id="@+id/viewCameraPrevire"
@@ -38,20 +37,18 @@
             android:textSize="@dimen/_20ssp" />
 
 
-
         <LinearLayout
-            android:id="@+id/llUpload"
+            android:id="@+id/llSelectPicture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/tvChooseProfilePic"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:visibility="visible"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivOpenCamera"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="@dimen/_250sdp"
                 android:layout_gravity="center_horizontal"
@@ -59,12 +56,12 @@
                 android:src="@drawable/ic_circle_white_with_face" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnUpload"
+                android:id="@+id/btnSelectPicture"
                 style="@style/ButtonGreen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_40sdp"
-                android:text="@string/upload"
+                android:text="@string/selectPicture"
                 android:textSize="@dimen/_14ssp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -82,7 +79,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llCameraButton"
+            android:id="@+id/llCameraOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/tvChooseProfilePic"
@@ -127,62 +124,90 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llCapture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal">
+                android:background="@drawable/selector_green"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:id="@+id/llButtonDelete"
-                    android:layout_width="0dp"
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextBlak"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_button_black_light_rounded"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_10sdp">
+                    android:text="@string/capture"
+                    android:textSize="@dimen/_14ssp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/TextRed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/delete"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:src="@drawable/ic_delete_red" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llButtonDone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_green"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_10sdp">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/TextBlak"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/done"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_15sdp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:src="@drawable/ic_right_blak" />
-                </LinearLayout>
             </LinearLayout>
 
+
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCameraButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:baselineAligned="false"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/llButtonDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_black_light_rounded"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@drawable/ic_delete_red" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llButtonDone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_green"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextBlak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/done"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@drawable/ic_right_blak" />
+            </LinearLayout>
+        </LinearLayout>
+
     </RelativeLayout>
 </layout>

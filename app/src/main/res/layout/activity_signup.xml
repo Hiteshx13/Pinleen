@@ -63,12 +63,56 @@
                 android:id="@+id/etPassword"
                 style="@style/EditTextSignUp"
                 android:layout_width="match_parent"
-                android:text="123Jack00707"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:hint="@string/create_password"
                 android:inputType="textPassword"
-                />
+                android:text="123Jack00707" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextWhiteNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/your_password_must_have"
+                android:textSize="@dimen/_10ssp" />
+
+            <LinearLayout
+                android:id="@+id/llPasswordRequirements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOneUpperCase"
+                    style="@style/TextWhiteNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_1_upper_case_letter_a_z"
+                    android:textSize="@dimen/_10ssp" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOneLowerCase"
+                    style="@style/TextSelectorWhiteRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_1_lower_case_letter_a_z"
+                    android:textSize="@dimen/_10ssp" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOneNumeric"
+                    style="@style/TextSelectorWhiteRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_1_numeric_character_0_9"
+                    android:textSize="@dimen/_10ssp" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMinimumLength"
+                    style="@style/TextSelectorWhiteRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minimum_6_characters_and_maximum_30_characters"
+                    android:textSize="@dimen/_10ssp" />
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextGrayDark"

@@ -18,7 +18,7 @@ class SignUpVerificationSuccessActivity : BaseActivity<ActivitySignupVerificatio
     override val bindingInflater: (LayoutInflater) -> ActivitySignupVerificationSuccessBinding
         get() = ActivitySignupVerificationSuccessBinding::inflate
 
-    override fun initClickListener() {
+    override fun initListener() {
         binding.btnGetStarted.setOnClickListener {
             val intent = Intent(this, FaceVerificationActivity::class.java)
             startActivity(intent)

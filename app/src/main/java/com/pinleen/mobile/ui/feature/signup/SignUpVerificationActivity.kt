@@ -21,7 +21,7 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
         val email = intent.extras?.get(PARAM_EMAIL)?.toString()
         binding.tvEmail.text=email
 
-        initClickListener()
+        initListener()
         setFocus()
 
         lifecycleScope.launchWhenCreated {
@@ -29,7 +29,7 @@ class SignUpVerificationActivity : BaseActivity<ActivitySignupVerificationCodeBi
         }
     }
 
-    override fun initClickListener(){
+    override fun initListener(){
         binding.btnConfirm.setOnClickListener {
             val intent = Intent(this, SignUpVerificationSuccessActivity::class.java)
             startActivity(intent)

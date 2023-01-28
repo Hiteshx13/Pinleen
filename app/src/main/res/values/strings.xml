@@ -34,5 +34,12 @@
     <string name="message_camera_permission">Camera permission is required to capture image. please grant permission for it.</string>
     <string name="grant">Grant</string>
     <string name="create_password">Create Password</string>
+    <string name="selectPicture">Select Picture</string>
+    <string name="capture">Capture</string>
+    <string name="your_password_must_have">Your password must have:</string>
+    <string name="_1_upper_case_letter_a_z">1 Upper case letter [A-Z]</string>
+    <string name="_1_lower_case_letter_a_z">1 lower case letter [a-z]</string>
+    <string name="_1_numeric_character_0_9">1 numeric character [0-9]</string>
+    <string name="minimum_6_characters_and_maximum_30_characters">Minimum 6 characters and maximum 30 characters</string>
 
 </resources>
