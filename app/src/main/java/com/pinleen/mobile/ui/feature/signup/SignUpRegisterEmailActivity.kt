@@ -8,12 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatTextView
+import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.databinding.ActivitySignupBinding
 import com.pinleen.mobile.ui.base.BaseActivity
 
 
 class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
     private val signUpViewModel: SignUpViewModel by viewModels()
+    private var cookie=""
+    val mapAuth = HashMap<String,String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +28,21 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
 
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
-            //  signUpViewModel.registerEmailPassword(
-//                    RequestRegisterEmail(
-//                        binding.etEmail.text.toString(),
-//                        binding.etPassword.text.toString()
-//                    )
-//                )
+
+            /*"" to "",
+        "Authorization" to "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZpY2UiOiJhbmRyb2lkIiwidXVpZCI6Ijk1YWU4Mzc3LTc0MjEtNDhlNi1hYzZjLWY4ZjZjNmEzYTJkMCIsImxhbmciOiJlcyIsInByb2NjIjowLCJpYXQiOjE2NzQ4NjQ1NTAsImV4cCI6MTY3NDg3NDU0OX0.rR3_2G9_rCBHssbpBv7np6wY-ubLcEq3ii-pu_-7q4Q",
+        "Cookie" to "s%3AD3cPQR6yQimkIL7xGZJJvP0No7u5WDfp.snc9wK5QC3ktpKx8zleCcEYChnsmJ%2FeMHgXZsJ8dz2c"
+*/
+            mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
+            mapAuth["Cookie"] = "connect.sid=$cookie"
+
+              signUpViewModel.registerEmailPassword(
+                    RequestRegisterEmail(
+                        binding.etEmail.text.toString(),
+                        binding.etPassword.text.toString()
+                    ),
+                  mapAuth
+                )
         }
 
         binding.etPassword.addTextChangedListener(object : TextWatcher {
@@ -91,9 +103,17 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
 
     private fun initObserver() {
         signUpViewModel.responseRegister.observe(this,
-            { response -> Log.d("PIK", "${response?.pik}") })
+            { response ->
+                Log.d("PIK", "${response?.body()?.pik}")
+                Log.d("headers", "${response?.headers()}")
+           val length=response?.headers()?.get("Set-Cookie")?.length?:0-18
+            cookie= response?.headers()?.get("Set-Cookie")?.substring(12,length)?:""
+                Log.d("Headers:", "${response.headers()}.")
+            })
 
         signUpViewModel.responseRegisterEmail.observe(this,
-            { response -> Log.d("response:", "$response") })
+            { response ->
+                Log.d("response:", "${response.headers()}.")
+            })
     }
 }
