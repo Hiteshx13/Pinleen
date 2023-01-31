@@ -90,7 +90,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
         }
 
         binding.btnSelectPicture.setOnClickListener {
-            showMessageDialog(this, true, object : ItemClickCameraDialog {
+            showImageSelectionDialog(this, true, object : ItemClickCameraDialog {
 
                 override fun onClickGallery() {
                     contract.launch("image/*")
@@ -107,7 +107,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                                 binding.llCameraOverlay.visibility = View.VISIBLE
                                 binding.viewCameraPrevire.visibility = View.VISIBLE
                             } else {
-                                showPermissionDialog(
+                                showRationalMessageDialog(
                                     baseContext,
                                     getString(R.string.please_grant_all_required_permission_from_application_settings),
                                     object : ItemClickPermission {

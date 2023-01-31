@@ -13,7 +13,6 @@ class SignUpRepository {
 
     private val registerApi: PinleenAPI =
         RetrofitHelper.getInstance().create(PinleenAPI::class.java)
-
     val map = mapOf("cu-x-server" to "8jfy572hf74xfhhg23C343u5u2jfw3240")
 
 

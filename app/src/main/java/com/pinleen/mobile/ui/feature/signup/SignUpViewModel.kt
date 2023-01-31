@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.data.models.response.ResponseStartRegistration
+import com.pinleen.mobile.utils.Constants.MAX_LENGTH_PASSWORD
+import com.pinleen.mobile.utils.Constants.MIN_LENGTH_PASSWORD
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +36,7 @@ class SignUpViewModel : ViewModel() {
             regexUppercase.containsMatchIn(password),
             regexLowercase.containsMatchIn(password),
             regexNumbers.containsMatchIn(password),
-            password.length in 6..30)
+            password.length in MIN_LENGTH_PASSWORD..MAX_LENGTH_PASSWORD)
     }
 
     private fun register() {

@@ -1,6 +1,5 @@
 package com.pinleen.mobile.ui.base
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,23 +22,19 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         initListener()
     }
 
-    protected fun showError(errorMessage: String) {
-        //if (BuildConfig.DEBUG)
-        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
-    }
 
     abstract fun initListener()
+
     /**
      * Extension for smarter launching of Activities
      */
 
-    fun launchActivity(context: Context, destination: AppCompatActivity) {
-        val intent = Intent(context, destination::class.java)
+    fun launchActivity(intent: Intent) {
         startActivity(intent)
     }
 
-    fun showToast(message:String){
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+    fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
 }

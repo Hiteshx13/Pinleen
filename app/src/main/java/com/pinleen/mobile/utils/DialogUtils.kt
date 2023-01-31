@@ -8,21 +8,20 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import com.pinleen.mobile.R
+import com.pinleen.mobile.databinding.DialogImageSelectionBinding
 import com.pinleen.mobile.databinding.DialogMessageBinding
 import com.pinleen.mobile.databinding.DialogRationalMessageBinding
-import com.pinleen.mobile.utils.Constants.CLICK_CAMERA
-import com.pinleen.mobile.utils.Constants.CLICK_GALLERY
 
 
-fun showMessageDialog(
+fun showImageSelectionDialog(
     context: Context,
     isCancelable: Boolean,
     listener: ItemClickCameraDialog
 ): Dialog {
 
     val inflater = LayoutInflater.from(context)
-    val binding: DialogMessageBinding =
-        DataBindingUtil.inflate(inflater, R.layout.dialog_message, null, false)
+    val binding: DialogImageSelectionBinding =
+        DataBindingUtil.inflate(inflater, R.layout.dialog_image_selection, null, false)
 
 
     val mDialog = Dialog(context)
@@ -51,7 +50,7 @@ fun showMessageDialog(
     return mDialog
 }
 
-fun showPermissionDialog(
+fun showRationalMessageDialog(
     context: Context,
     message: String,
     listener: ItemClickPermission
@@ -79,10 +78,40 @@ fun showPermissionDialog(
     return mDialog
 }
 
+fun showMessageDialog(
+    context: Context,
+    message: String
+
+): Dialog {
+
+    val inflater = LayoutInflater.from(context)
+    val binding: DialogMessageBinding =
+        DataBindingUtil.inflate(inflater, R.layout.dialog_message, null, false)
+    val mDialog = Dialog(context)
+
+    mDialog.window?.setBackgroundDrawableResource(R.color.transparent)
+    mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    mDialog.setContentView(binding.root)
+    mDialog.setCanceledOnTouchOutside(false)
+    mDialog.window?.setLayout(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT
+    )
+    binding.txtMessage.text = message
+
+    binding.btnCancel.setOnClickListener {
+        mDialog.dismiss()
+    }
+
+    mDialog.show()
+    return mDialog
+}
+
 interface ItemClickCameraDialog {
     fun onClickGallery()
     fun onClickCamera()
 }
+
 interface ItemClickPermission {
     fun onClickSettings()
 }

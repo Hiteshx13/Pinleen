@@ -39,7 +39,12 @@
     <string name="your_password_must_have">Your password must have:</string>
     <string name="_1_upper_case_letter_a_z">1 Upper case letter [A-Z]</string>
     <string name="_1_lower_case_letter_a_z">1 lower case letter [a-z]</string>
-    <string name="_1_numeric_character_0_9">1 numeric character [0-9]</string>
+    <string name="_1_numeric_character_0_9">1 numeric character [0–9]</string>
     <string name="minimum_6_characters_and_maximum_30_characters">Minimum 6 characters and maximum 30 characters</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="please_enter_valid_email">Please enter valid email</string>
+    <string name="please_check">Please check</string>
+    <string name="please_enter_valid_password">Password must contain at least :\n1 Upper case letter [A-Z] \n1 lower case letter [a-z]\n1 numeric character [0–9]\nMinimum 6 characters and maximum 30 characters</string>
 
 </resources>

@@ -56,8 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:text="sparrow@pinleen.com" />
+                android:inputType="textEmailAddress" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etPassword"
@@ -66,53 +65,52 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:hint="@string/create_password"
-                android:inputType="textPassword"
-                android:text="123Jack00707" />
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/TextWhiteNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/your_password_must_have"
-                android:textSize="@dimen/_10ssp" />
+                android:inputType="textPassword" />
+            <!--            <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                style="@style/TextWhiteNormal"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="@dimen/_10sdp"-->
+            <!--                android:text="@string/your_password_must_have"-->
+            <!--                android:textSize="@dimen/_10ssp" />-->
 
-            <LinearLayout
-                android:id="@+id/llPasswordRequirements"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/_5sdp"
-                android:paddingEnd="@dimen/_5sdp"
-                android:orientation="vertical">
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/llPasswordRequirements"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:paddingStart="@dimen/_5sdp"-->
+            <!--                android:paddingEnd="@dimen/_5sdp"-->
+            <!--                android:orientation="vertical">-->
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvOneUpperCase"
-                    style="@style/TextWhiteNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_1_upper_case_letter_a_z"
-                    android:textSize="@dimen/_10ssp" />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvOneLowerCase"
-                    style="@style/TextSelectorWhiteRed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_1_lower_case_letter_a_z"
-                    android:textSize="@dimen/_10ssp" />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvOneNumeric"
-                    style="@style/TextSelectorWhiteRed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_1_numeric_character_0_9"
-                    android:textSize="@dimen/_10ssp" />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvMinimumLength"
-                    style="@style/TextSelectorWhiteRed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/minimum_6_characters_and_maximum_30_characters"
-                    android:textSize="@dimen/_10ssp" />
-            </LinearLayout>
+            <!--                <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                    android:id="@+id/tvOneUpperCase"-->
+            <!--                    style="@style/TextWhiteNormal"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="@string/_1_upper_case_letter_a_z"-->
+            <!--                    android:textSize="@dimen/_10ssp" />-->
+            <!--                <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                    android:id="@+id/tvOneLowerCase"-->
+            <!--                    style="@style/TextSelectorWhiteRed"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="@string/_1_lower_case_letter_a_z"-->
+            <!--                    android:textSize="@dimen/_10ssp" />-->
+            <!--                <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                    android:id="@+id/tvOneNumeric"-->
+            <!--                    style="@style/TextSelectorWhiteRed"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="@string/_1_numeric_character_0_9"-->
+            <!--                    android:textSize="@dimen/_10ssp" />-->
+            <!--                <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                    android:id="@+id/tvMinimumLength"-->
+            <!--                    style="@style/TextSelectorWhiteRed"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="@string/minimum_6_characters_and_maximum_30_characters"-->
+            <!--                    android:textSize="@dimen/_10ssp" />-->
+            <!--            </LinearLayout>-->
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextGrayDark"
@@ -126,6 +124,7 @@
                 tools:text="Helpful signup information" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cbAge"
                 style="@style/TextGrayNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,6 +134,7 @@
                 android:text="@string/i_m_at_least_18_years_old_and_agree_to_the_following_terms" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cbAgreement"
                 style="@style/TextGrayNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

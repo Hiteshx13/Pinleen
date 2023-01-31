@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -60,7 +59,7 @@ class PermissionManager private constructor(private val fragment: WeakReference<
     }
 
     private fun displayRationale(fragment: AppCompatActivity) {
-        showPermissionDialog(
+        showRationalMessageDialog(
             fragment,
             fragment.getString(R.string.please_grant_all_required_permission_from_application_settings),
             object : ItemClickPermission {
@@ -69,7 +68,7 @@ class PermissionManager private constructor(private val fragment: WeakReference<
                         Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                     val uri = Uri.fromParts("package", fragment.packageName, null)
                     intent.data = uri
-                   fragment.startActivity(intent)
+                    fragment.startActivity(intent)
                 }
             }
         )

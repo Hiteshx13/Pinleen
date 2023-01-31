@@ -3,6 +3,7 @@
     <color name="colorPrimary">#1d1e25</color>
     <color name="colorPrimaryVariant">#FFFFFF</color>
     <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
     <color name="blackTrans20">#33000000</color>
     <color name="blackTrans90">#90000000</color>
     <color name="colorGray">#808D9E</color>
