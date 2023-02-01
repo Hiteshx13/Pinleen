@@ -35,7 +35,7 @@
             android:textColor="@color/colorGray"
             android:textColorLink="@color/linkColor"
             android:textSize="@dimen/_11ssp"
-            android:text="@string/your_account_has_been_verified_succesfully_now_let_s_enjoy_pinleen_s_features" />
+            android:text="@string/your_account_has_been_verified_successfully_now_let_s_enjoy_pinleen_s_features" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGetStarted"

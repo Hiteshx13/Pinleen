@@ -53,7 +53,7 @@ fun showImageSelectionDialog(
 fun showRationalMessageDialog(
     context: Context,
     message: String,
-    listener: ItemClickPermission
+    listener: ItemClickListener
 ): Dialog {
 
     val inflater = LayoutInflater.from(context)
@@ -67,7 +67,7 @@ fun showRationalMessageDialog(
     binding.txtMessage.text = message
 
     binding.btnOpenSettings.setOnClickListener {
-        listener.onClickSettings()
+        listener.onClick()
         mDialog.dismiss()
     }
     binding.btnCancel.setOnClickListener {
@@ -107,11 +107,12 @@ fun showMessageDialog(
     return mDialog
 }
 
+
 interface ItemClickCameraDialog {
     fun onClickGallery()
     fun onClickCamera()
 }
 
-interface ItemClickPermission {
-    fun onClickSettings()
+interface ItemClickListener {
+    fun onClick()
 }

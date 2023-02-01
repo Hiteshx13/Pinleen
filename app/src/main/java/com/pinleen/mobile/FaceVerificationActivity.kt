@@ -1,5 +1,6 @@
 package com.pinleen.mobile
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -29,6 +30,11 @@ import java.util.concurrent.Executors
 
 class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>() {
 
+    companion object {
+        fun getIntent(mContext: Context): Intent {
+            return Intent(mContext, FaceVerificationActivity::class.java)
+        }
+    }
 
     private val permissionManager = PermissionManager.from(this)
     private var lensFacing = CameraSelector.DEFAULT_BACK_CAMERA
@@ -64,25 +70,25 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
         }
 
         binding.llButtonRotateCamera.setOnClickListener {
-            if (lensFacing ===CameraSelector.DEFAULT_FRONT_CAMERA) lensFacing =
+            if (lensFacing === CameraSelector.DEFAULT_FRONT_CAMERA) lensFacing =
                 CameraSelector.DEFAULT_BACK_CAMERA else if (lensFacing === androidx.camera.core.CameraSelector.DEFAULT_BACK_CAMERA) lensFacing =
                 CameraSelector.DEFAULT_FRONT_CAMERA
             startCamera()
         }
 
         binding.llCapture.setOnClickListener {
-            val bitmap = binding.viewCameraPrevire.bitmap
+            val bitmap = binding.viewCameraPreview.bitmap
             binding.ivProfileImage.setImageBitmap(bitmap)
             binding.llCameraOverlay.visibility = View.GONE
-            binding.viewCameraPrevire.visibility = View.GONE
+            binding.viewCameraPreview.visibility = View.GONE
             binding.llCameraButtons.visibility = View.VISIBLE
         }
 
         binding.llButtonDelete.setOnClickListener {
             binding.ivProfileImage.setImageDrawable(null)
-            binding.llSelectPicture.visibility=View.VISIBLE
-            binding.llCameraOverlay.visibility=View.GONE
-            binding.llCameraButtons.visibility=View.GONE
+            binding.llSelectPicture.visibility = View.VISIBLE
+            binding.llCameraOverlay.visibility = View.GONE
+            binding.llCameraButtons.visibility = View.GONE
         }
 
         binding.llButtonDone.setOnClickListener {
@@ -105,13 +111,13 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                                 startCamera()
                                 binding.llSelectPicture.visibility = View.GONE
                                 binding.llCameraOverlay.visibility = View.VISIBLE
-                                binding.viewCameraPrevire.visibility = View.VISIBLE
+                                binding.viewCameraPreview.visibility = View.VISIBLE
                             } else {
                                 showRationalMessageDialog(
                                     baseContext,
                                     getString(R.string.please_grant_all_required_permission_from_application_settings),
-                                    object : ItemClickPermission {
-                                        override fun onClickSettings() {
+                                    object : ItemClickListener {
+                                        override fun onClick() {
                                             val intent =
                                                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                                             val uri = Uri.fromParts("package", packageName, null)
@@ -128,12 +134,6 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
     }
 
 
-    companion object {
-        private const val TAG = "Pinleen"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-    }
-
-
     private fun startCamera() {
         cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
@@ -143,7 +143,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
             val preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(binding.viewCameraPrevire.surfaceProvider)
+                    it.setSurfaceProvider(binding.viewCameraPreview.surfaceProvider)
                 }
 
             try {
@@ -156,7 +156,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                 )
 
             } catch (exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
+                Log.e("Exception", "Use case binding failed", exc)
             }
 
         }, ContextCompat.getMainExecutor(this))

@@ -2,18 +2,19 @@ package com.pinleen.mobile.ui.feature.signup
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatTextView
 import com.pinleen.mobile.R
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
-import com.pinleen.mobile.databinding.ActivitySignupBinding
+import com.pinleen.mobile.databinding.ActivityRegisterEmailBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.utils.Constants.PARAM_EMAIL
+import com.pinleen.mobile.utils.Constants.PARAM_PIK
 import com.pinleen.mobile.utils.showMessageDialog
 
 
-class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
+class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
     private val signUpViewModel: SignUpViewModel by viewModels()
     private var PIK = ""
     val mapAuth = HashMap<String, String>()
@@ -23,8 +24,8 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
         initObserver()
     }
 
-    override val bindingInflater: (LayoutInflater) -> ActivitySignupBinding
-        get() = ActivitySignupBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivityRegisterEmailBinding
+        get() = ActivityRegisterEmailBinding::inflate
 
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
@@ -47,12 +48,15 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
 //                    changeState(isLowercase, binding.tvOneLowerCase)
 //                    changeState(isAnyNumber, binding.tvOneNumeric)
 //                    changeState(isPasswordLengthValid, binding.tvMinimumLength)
-
+                    val isAgeChecked = binding.cbAge.isChecked
+                    val isAgreement = binding.cbAgreement.isChecked
                     if (isValidEmail
                         && isUppercase
                         && isLowercase
                         && isAnyNumber
                         && isPasswordLengthValid
+                        && isAgeChecked
+                        && isAgreement
                     ) {
                         mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
                         mapAuth["Content-Type"] = "application/json"
@@ -68,22 +72,22 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
 
                     } else if (!isValidEmail) {
                         showMessageDialog(
-                            this@SignUpRegisterEmailActivity,
+                            this@RegisterEmailActivity,
                             getString(R.string.please_enter_valid_email)
                         )
-                    }else if (!isUppercase || !isLowercase || !isAnyNumber || !isPasswordLengthValid) {
+                    } else if (!isUppercase || !isLowercase || !isAnyNumber || !isPasswordLengthValid) {
                         showMessageDialog(
-                            this@SignUpRegisterEmailActivity,
+                            this@RegisterEmailActivity,
                             getString(R.string.please_enter_valid_password)
                         )
-                    } else if (!binding.cbAge.isChecked) {
+                    } else if (!isAgeChecked) {
                         showMessageDialog(
-                            this@SignUpRegisterEmailActivity,
+                            this@RegisterEmailActivity,
                             getString(R.string.please_check) + "" + getString(R.string.i_m_at_least_18_years_old_and_agree_to_the_following_terms)
                         )
-                    } else if (!binding.cbAgreement.isChecked) {
+                    } else if (!isAgreement) {
                         showMessageDialog(
-                            this@SignUpRegisterEmailActivity,
+                            this@RegisterEmailActivity,
                             getString(R.string.please_check) + "" + getString(R.string.i_ve_read_and_agree_to_the_e_sign_disclosure_and_consent_to_receive_all_communications_electronically)
                         )
                     }
@@ -103,7 +107,6 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
         signUpViewModel.responseRegister.observe(this,
             { response ->
                 if (response.isSuccessful) {
-                    Log.d("PIK", "${response?.body()?.pik}")
                     PIK = response?.body()?.pik ?: ""
                 } else {
                     showMessageDialog(this, response?.message() ?: "")
@@ -113,9 +116,11 @@ class SignUpRegisterEmailActivity : BaseActivity<ActivitySignupBinding>() {
         signUpViewModel.responseRegisterEmail.observe(this,
             { response ->
                 if (response.isSuccessful) {
-                    Log.d("PIK", "${response?.body()?.pik}")
                     PIK = response?.body()?.pik ?: ""
-                    launchActivity( SignUpVerificationActivity.getIntent(this))
+                    val intent = VerifyEmailOTPActivity.getIntent(this)
+                    intent.putExtra(PARAM_EMAIL, binding.etEmail.text)
+                    intent.putExtra(PARAM_PIK, PIK)
+                    launchActivity(intent)
                 } else {
                     showMessageDialog(this, response?.message() ?: "")
                 }

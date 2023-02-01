@@ -14,7 +14,7 @@
     <string name="please_enter_the_code_we_just_sent_to_email">Please enter the code we just sent to email</string>
     <string name="resend_code_in">Resend Code in</string>
     <string name="confirm">Confirm</string>
-    <string name="your_account_has_been_verified_succesfully_now_let_s_enjoy_pinleen_s_features">Your account has been verified succesfully, \nnow let’s enjoy Pinleen’s features!</string>
+    <string name="your_account_has_been_verified_successfully_now_let_s_enjoy_pinleen_s_features">Your account has been verified successfully, \nnow let’s enjoy Pinleen’s features!</string>
     <string name="get_started">Get Started</string>
     <string name="choose_profile_picture">Choose profile picture</string>
     <string name="upload">Upload</string>
@@ -46,5 +46,9 @@
     <string name="please_enter_valid_email">Please enter valid email</string>
     <string name="please_check">Please check</string>
     <string name="please_enter_valid_password">Password must contain at least :\n1 Upper case letter [A-Z] \n1 lower case letter [a-z]\n1 numeric character [0–9]\nMinimum 6 characters and maximum 30 characters</string>
+    <string name="please_enter_valid_otp">Please enter valid OTP</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="did_not_get_code">Did not get code?</string>
+    <string name="resend">Resend</string>
 
 </resources>

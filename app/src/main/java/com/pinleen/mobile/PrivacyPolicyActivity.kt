@@ -12,7 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.pinleen.mobile.databinding.ActivityPrivacyPolicyBinding
 import com.pinleen.mobile.ui.base.BaseActivity
-import com.pinleen.mobile.ui.feature.signup.SignUpRegisterEmailActivity
+import com.pinleen.mobile.ui.feature.signup.RegisterEmailActivity
 
 
 class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
@@ -45,7 +45,7 @@ class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
 
     override fun initListener() {
         binding.btnAgreeAndContinue.setOnClickListener {
-            val intent = Intent(this, SignUpRegisterEmailActivity::class.java)
+            val intent = Intent(this, RegisterEmailActivity::class.java)
             startActivity(intent)
         }
     }

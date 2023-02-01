@@ -62,8 +62,8 @@ class PermissionManager private constructor(private val fragment: WeakReference<
         showRationalMessageDialog(
             fragment,
             fragment.getString(R.string.please_grant_all_required_permission_from_application_settings),
-            object : ItemClickPermission {
-                override fun onClickSettings() {
+            object : ItemClickListener {
+                override fun onClick() {
                     val intent =
                         Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                     val uri = Uri.fromParts("package", fragment.packageName, null)

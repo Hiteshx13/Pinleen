@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -89,9 +90,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llCounter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -99,7 +100,6 @@
                     style="@style/TextGrayNormal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
                     android:text="@string/resend_code_in"
                     android:textSize="@dimen/_11ssp" />
@@ -110,9 +110,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
                     android:text="00:48"
+                    android:textSize="@dimen/_11ssp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llResend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextGrayNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/did_not_get_code"
+                    android:textSize="@dimen/_11ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvResend"
+                    style="@style/TextWhiteNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="@string/resend"
                     android:textSize="@dimen/_11ssp" />
             </LinearLayout>
 

@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatTextView
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.databinding.ActivityLoginBinding
-import com.pinleen.mobile.databinding.ActivitySignupBinding
+
 import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.ui.feature.signup.SignUpViewModel
 import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
@@ -18,8 +18,8 @@ import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     private val signUpViewModel: SignUpViewModel by viewModels()
-    private var cookie=""
-    val mapAuth = HashMap<String,String>()
+    private var cookie = ""
+    val mapAuth = HashMap<String, String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +35,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
             mapAuth["Cookie"] = "connect.sid=$cookie"
 
-              signUpViewModel.registerEmailPassword(
-                    RequestRegisterEmail(
-                        binding.etEmail.text.toString(),
-                        binding.etPassword.text.toString()
-                    ),
-                  mapAuth
-                )
+            signUpViewModel.registerEmailPassword(
+                RequestRegisterEmail(
+                    binding.etEmail.text.toString(),
+                    binding.etPassword.text.toString()
+                ),
+                mapAuth
+            )
         }
 
         binding.etPassword.addTextChangedListener(object : TextWatcher {
@@ -65,13 +65,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                                 && isUppercase
                                 && isLowercase
                                 && isAnyNumber
-                                && isPasswordLengthValid) {
-                                binding.btnRegister.isClickable=true
-                                binding.btnRegister.alpha=1.0f
+                                && isPasswordLengthValid
+                            ) {
+                                binding.btnRegister.isClickable = true
+                                binding.btnRegister.alpha = 1.0f
 
-                            }else{
-                                binding.btnRegister.isClickable=false
-                                binding.btnRegister.alpha=0.5f
+                            } else {
+                                binding.btnRegister.isClickable = false
+                                binding.btnRegister.alpha = 0.5f
                             }
                         }
                     })
@@ -105,8 +106,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             { response ->
                 Log.d("PIK", "${response?.body()?.pik}")
                 Log.d("headers", "${response?.headers()}")
-           val length=response?.headers()?.get("Set-Cookie")?.length?:0-18
-            cookie= response?.headers()?.get("Set-Cookie")?.substring(12,length)?:""
+                val length = response?.headers()?.get("Set-Cookie")?.length ?: 0 - 18
+                cookie = response?.headers()?.get("Set-Cookie")?.substring(12, length) ?: ""
                 Log.d("Headers:", "${response.headers()}.")
             })
 

@@ -1,12 +1,13 @@
 package com.pinleen.mobile.ui.feature.signup
 
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
+import com.pinleen.mobile.data.models.request.RequestRegisterNameAndPhone
+import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
 import com.pinleen.mobile.data.models.response.ResponseStartRegistration
 import com.pinleen.mobile.data.network.retrofit.PinleenAPI
 import com.pinleen.mobile.data.network.retrofit.RetrofitHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Callback
 import retrofit2.Response
 
 class SignUpRepository {
@@ -22,11 +23,31 @@ class SignUpRepository {
 
     suspend fun registerEmailPassword(
         param: RequestRegisterEmail,
-        mapAuth:Map<String,String>
-
+        mapAuth: Map<String, String>
     ) =
         withContext(Dispatchers.IO) {
             registerApi.startRegisterUser(mapAuth, param)
+        }
+    suspend fun registerUserNameAndPhone(
+        param: RequestRegisterNameAndPhone,
+        mapAuth: Map<String, String>
+    ) =
+        withContext(Dispatchers.IO) {
+            registerApi.registerUserNameAndPhone(mapAuth, param)
+        }
+
+    suspend fun verifyEmailOTP(
+        param: RequestVerifyEmailOTP,
+        mapAuth: Map<String, String>
+    ) =
+        withContext(Dispatchers.IO) {
+            registerApi.verifyEmailOTP(mapAuth, param)
+        }
+    suspend fun callResendEmailOTP(
+        mapAuth: Map<String, String>
+    ) =
+        withContext(Dispatchers.IO) {
+            registerApi.callResendEmailOTP(mapAuth)
         }
 }
 
