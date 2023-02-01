@@ -3,6 +3,7 @@ package com.pinleen.mobile.ui.feature.signup
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.data.models.request.RequestRegisterNameAndPhone
 import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
+import com.pinleen.mobile.data.models.request.RequestVerifyMobileOTP
 import com.pinleen.mobile.data.models.response.ResponseStartRegistration
 import com.pinleen.mobile.data.network.retrofit.PinleenAPI
 import com.pinleen.mobile.data.network.retrofit.RetrofitHelper
@@ -42,6 +43,13 @@ class SignUpRepository {
     ) =
         withContext(Dispatchers.IO) {
             registerApi.verifyEmailOTP(mapAuth, param)
+        }
+    suspend fun verifyMobileOTP(
+        param: RequestVerifyMobileOTP,
+        mapAuth: Map<String, String>
+    ) =
+        withContext(Dispatchers.IO) {
+            registerApi.verifyMobileOTP(mapAuth, param)
         }
     suspend fun callResendEmailOTP(
         mapAuth: Map<String, String>

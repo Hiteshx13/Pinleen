@@ -26,10 +26,10 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -42,8 +42,7 @@
 
         <activity
             android:name=".ui.feature.signup.RegisterEmailActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ui.feature.signup.VerifyEmailOTPActivity"
             android:exported="true" />
@@ -54,12 +53,14 @@
             android:name=".ui.feature.signup.RegisterUserNameActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.feature.signup.VerifyMobileOTPActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".FaceVerificationActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 

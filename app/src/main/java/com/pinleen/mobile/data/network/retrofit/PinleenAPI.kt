@@ -3,6 +3,7 @@ package com.pinleen.mobile.data.network.retrofit
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.data.models.request.RequestRegisterNameAndPhone
 import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
+import com.pinleen.mobile.data.models.request.RequestVerifyMobileOTP
 import com.pinleen.mobile.data.models.response.ResponseStartRegistration
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,10 +22,9 @@ interface PinleenAPI {
         @Body param: RequestRegisterEmail
     ): Response<ResponseStartRegistration>
 
-    @POST("/users/:uuid/name-phone")
-    suspend fun registerUserNameAndPhone(
-        @HeaderMap headers: Map<String, String>,
-        @Body param: RequestRegisterNameAndPhone
+    @POST("new-user")
+    suspend fun callResendEmailOTP(
+        @HeaderMap headers: Map<String, String>
     ): Response<ResponseStartRegistration>
 
     @POST("new-user")
@@ -33,9 +33,16 @@ interface PinleenAPI {
         @Body param: RequestVerifyEmailOTP
     ): Response<ResponseStartRegistration>
 
-    @POST("new-user")
-    suspend fun callResendEmailOTP(
-        @HeaderMap headers: Map<String, String>
+    @POST("users/:uuid/name-phone")
+    suspend fun registerUserNameAndPhone(
+        @HeaderMap headers: Map<String, String>,
+        @Body param: RequestRegisterNameAndPhone
+    ): Response<ResponseStartRegistration>
+
+    @POST("users/:uuid/name-phone")
+    suspend fun verifyMobileOTP(
+        @HeaderMap headers: Map<String, String>,
+        @Body param: RequestVerifyMobileOTP
     ): Response<ResponseStartRegistration>
 
 }

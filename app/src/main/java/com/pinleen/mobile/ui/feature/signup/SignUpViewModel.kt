@@ -19,10 +19,6 @@ class SignUpViewModel : ViewModel() {
     val responseRegisterEmail = MutableLiveData<Response<ResponseStartRegistration>>()
     val responseNameAndPhone = MutableLiveData<Response<ResponseStartRegistration>>()
 
-    init {
-        register()
-    }
-
     fun validateEmailPassword(
         email: String,
         password: String,
@@ -42,7 +38,7 @@ class SignUpViewModel : ViewModel() {
         )
     }
 
-    private fun register() {
+    fun register() {
         viewModelScope.launch {
             responseRegister.value = repository.register()
         }

@@ -3,12 +3,12 @@ package com.pinleen.mobile.ui.feature.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.pinleen.mobile.data.models.request.RequestRegisterNameAndPhone
 import com.pinleen.mobile.databinding.ActivityRegisterUserNameBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.utils.Constants
 import com.pinleen.mobile.utils.showMessageDialog
 
 
@@ -38,12 +38,12 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
             val fullName = "${binding.etFirstName.text} ${binding.etLastName.text}"
-            val countryCode="lv"//binding.etCountryCode.text.toString()
-            val mobile=binding.etMobile.text.toString()
+            val countryCode = "lv"//binding.etCountryCode.text.toString()
+            val mobile = binding.etMobile.text.toString()
             val params = RequestRegisterNameAndPhone(
-                fullName,countryCode,mobile
+                fullName, countryCode, mobile
             )
-            viewModel.registerUserNameAndPhone(params,mapAuth)
+            viewModel.registerUserNameAndPhone(params, mapAuth)
 
         }
     }
@@ -111,13 +111,16 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
         viewModel.responseNameAndPhone.observe(this,
             { response ->
                 if (response.isSuccessful) {
-                    Log.d("PIK", "${response?.body()?.pik}")
-                    PIK = response?.body()?.pik ?: ""
-                    launchActivity(SignUpVerificationSuccessActivity.getIntent(this@RegisterUserNameActivity))
+                    PIK = response.body()?.pik ?: ""
+                    val countryCode = "lv"//binding.etCountryCode.text.toString()
+                    val mobile = binding.etMobile.text.toString()
+                    val intent = VerifyMobileOTPActivity.getIntent(this@RegisterUserNameActivity)
+                    intent.putExtra(Constants.PARAM_MOBILE, "$countryCode $mobile")
+                    intent.putExtra(Constants.PARAM_PIK, PIK)
+                    launchActivity(intent)
                 } else {
                     showMessageDialog(this, response?.message() ?: "")
                 }
             })
-
     }
 }

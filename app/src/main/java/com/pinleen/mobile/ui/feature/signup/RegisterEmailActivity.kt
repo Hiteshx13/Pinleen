@@ -22,6 +22,7 @@ class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initObserver()
+        signUpViewModel.register()
     }
 
     override val bindingInflater: (LayoutInflater) -> ActivityRegisterEmailBinding

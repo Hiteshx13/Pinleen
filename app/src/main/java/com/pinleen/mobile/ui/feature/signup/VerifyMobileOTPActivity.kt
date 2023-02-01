@@ -8,10 +8,10 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.pinleen.mobile.R
-import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
-import com.pinleen.mobile.databinding.ActivityEmailOtpVerificationBinding
+import com.pinleen.mobile.data.models.request.RequestVerifyMobileOTP
+import com.pinleen.mobile.databinding.ActivityMobileOtpVerificationBinding
 import com.pinleen.mobile.ui.base.BaseActivity
-import com.pinleen.mobile.utils.Constants.PARAM_EMAIL
+import com.pinleen.mobile.utils.Constants.PARAM_MOBILE
 import com.pinleen.mobile.utils.Constants.PARAM_PIK
 import com.pinleen.mobile.utils.TextWatcher
 import com.pinleen.mobile.utils.showMessageDialog
@@ -19,11 +19,11 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
 
 
-class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>() {
+class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBinding>() {
 
     companion object {
         fun getIntent(mContext: Context): Intent {
-            return Intent(mContext, VerifyEmailOTPActivity::class.java)
+            return Intent(mContext, VerifyMobileOTPActivity::class.java)
         }
     }
 
@@ -31,12 +31,12 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
     private val mapAuth = HashMap<String, String>()
     private var PIK = ""
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         PIK = intent.extras?.get(PARAM_PIK)?.toString() ?: ""
-        val email = intent.extras?.get(PARAM_EMAIL)?.toString()
-        binding.tvEmail.text = email
+        binding.tvMobile.text = intent.extras?.get(PARAM_MOBILE)?.toString()
 
         initObserver()
         setFocus()
@@ -66,19 +66,16 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
     }
 
     private fun initObserver() {
-        viewModel.responseVerifyEmailOTP.observe(this,
+        viewModel.responseVerifyMobileOTP.observe(this,
             { response ->
                 if (response.isSuccessful) {
-                    PIK=response.body()?.pik?:""
-                    val intent=RegisterUserNameActivity.getIntent(this)
-                    intent.putExtra(PARAM_PIK,PIK)
-                    launchActivity(intent)
+                    launchActivity(SignUpVerificationSuccessActivity.getIntent(this))
                 } else {
                     showMessageDialog(this, response?.message() ?: "")
                 }
             })
 
-        viewModel.responseResendEmailOTP.observe(this,
+        viewModel.responseResendMobileOTP.observe(this,
             { response ->
                 showMessageDialog(this, response?.message() ?: "")
             })
@@ -97,7 +94,7 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
         var count = 61
         for (event in ticker) {
             count--
-            val fCount=String.format("00:%02d", count)
+            val fCount = String.format("00:%02d", count)
             binding.tvTimer.text = fCount
             if (count == 0) {
                 binding.llCounter.visibility = View.GONE
@@ -119,12 +116,12 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
         val otp = "$passOne$passTwo$passThree$passFour"
         if (viewModel.validateOTP(otp)) {
 
-            viewModel.verifyEmailOTP(RequestVerifyEmailOTP(otp), mapAuth)
+            viewModel.verifyMobileOTP(RequestVerifyMobileOTP(otp), mapAuth)
         } else {
             showMessageDialog(this, getString(R.string.please_enter_valid_otp))
         }
     }
 
-    override val bindingInflater: (LayoutInflater) -> ActivityEmailOtpVerificationBinding
-        get() = ActivityEmailOtpVerificationBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivityMobileOtpVerificationBinding
+        get() = ActivityMobileOtpVerificationBinding::inflate
 }
