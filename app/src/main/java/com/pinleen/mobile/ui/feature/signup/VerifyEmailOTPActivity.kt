@@ -3,11 +3,13 @@ package com.pinleen.mobile.ui.feature.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.pinleen.mobile.R
+import com.pinleen.mobile.data.models.request.RequestResendEmailOTP
 import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
 import com.pinleen.mobile.databinding.ActivityEmailOtpVerificationBinding
 import com.pinleen.mobile.ui.base.BaseActivity
@@ -30,13 +32,14 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
     private val viewModel: SignUpVerificationViewModel by viewModels()
     private val mapAuth = HashMap<String, String>()
     private var PIK = ""
+    private var EMAIL=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         PIK = intent.extras?.get(PARAM_PIK)?.toString() ?: ""
-        val email = intent.extras?.get(PARAM_EMAIL)?.toString()
-        binding.tvEmail.text = email
+        EMAIL = intent.extras?.get(PARAM_EMAIL)?.toString().toString()
+        binding.tvEmail.text = EMAIL
 
         initObserver()
         setFocus()
@@ -45,6 +48,7 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
             tickerFlow()
         }
 
+        mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
         mapAuth["Content-Type"] = "application/json"
         mapAuth["Authorization"] = "Bearer $PIK"
     }
@@ -60,14 +64,14 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
         binding.tvResend.setOnClickListener {
             binding.llResend.visibility = View.GONE
             binding.llCounter.visibility = View.VISIBLE
-            viewModel.callResendEmailOTP(mapAuth)
-
+            viewModel.callResendEmailOTP(mapAuth, RequestResendEmailOTP(EMAIL))
         }
     }
 
     private fun initObserver() {
         viewModel.responseVerifyEmailOTP.observe(this,
             { response ->
+                Log.d("RESPONSE","$response")
                 if (response.isSuccessful) {
                     PIK=response.body()?.pik?:""
                     val intent=RegisterUserNameActivity.getIntent(this)

@@ -51,11 +51,11 @@ class LoginRepository {
         withContext(Dispatchers.IO) {
             registerApi.verifyMobileOTP(mapAuth, param)
         }
-    suspend fun callResendEmailOTP(
-        mapAuth: Map<String, String>
-    ) =
-        withContext(Dispatchers.IO) {
-            registerApi.callResendEmailOTP(mapAuth)
-        }
+//    suspend fun callResendEmailOTP(
+//        mapAuth: Map<String, String>
+//    ) =
+//        withContext(Dispatchers.IO) {
+//            registerApi.callResendEmailOTP(mapAuth)
+//        }
 }
 

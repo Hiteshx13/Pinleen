@@ -45,6 +45,7 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
             tickerFlow()
         }
 
+        mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
         mapAuth["Content-Type"] = "application/json"
         mapAuth["Authorization"] = "Bearer $PIK"
     }
@@ -60,7 +61,7 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
         binding.tvResend.setOnClickListener {
             binding.llResend.visibility = View.GONE
             binding.llCounter.visibility = View.VISIBLE
-            viewModel.callResendEmailOTP(mapAuth)
+           // viewModel.callResendEmailOTP(mapAuth)
 
         }
     }

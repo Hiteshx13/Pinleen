@@ -63,6 +63,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_number"
+                    android:maxLength="11"
                     android:inputType="numberDecimal" />
             </LinearLayout>
 

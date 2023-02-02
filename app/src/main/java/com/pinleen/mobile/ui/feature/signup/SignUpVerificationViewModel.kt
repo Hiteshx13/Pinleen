@@ -3,6 +3,7 @@ package com.pinleen.mobile.ui.feature.signup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pinleen.mobile.data.models.request.RequestResendEmailOTP
 import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
 import com.pinleen.mobile.data.models.request.RequestVerifyMobileOTP
 import com.pinleen.mobile.data.models.response.ResponseStartRegistration
@@ -30,6 +31,7 @@ class SignUpVerificationViewModel : ViewModel() {
             responseVerifyEmailOTP.value = repository.verifyEmailOTP(param, mapAuth)
         }
     }
+
     fun verifyMobileOTP(param: RequestVerifyMobileOTP, mapAuth: Map<String, String>) {
 
         viewModelScope.launch {
@@ -37,9 +39,9 @@ class SignUpVerificationViewModel : ViewModel() {
         }
     }
 
-    fun callResendEmailOTP(mapAuth: Map<String, String>) {
+    fun callResendEmailOTP(mapAuth: Map<String, String>, param: RequestResendEmailOTP) {
         viewModelScope.launch {
-            responseResendMobileOTP.value = repository.callResendEmailOTP(mapAuth)
+            responseResendMobileOTP.value = repository.callResendEmailOTP(mapAuth, param)
         }
     }
 }

@@ -45,10 +45,7 @@ class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
                     isAnyNumber: Boolean,
                     isPasswordLengthValid: Boolean
                 ) {
-//                    changeState(isUppercase, binding.tvOneUpperCase)
-//                    changeState(isLowercase, binding.tvOneLowerCase)
-//                    changeState(isAnyNumber, binding.tvOneNumeric)
-//                    changeState(isPasswordLengthValid, binding.tvMinimumLength)
+
                     val isAgeChecked = binding.cbAge.isChecked
                     val isAgreement = binding.cbAgreement.isChecked
                     if (isValidEmail

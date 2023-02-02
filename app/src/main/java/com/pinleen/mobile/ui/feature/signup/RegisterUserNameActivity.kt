@@ -27,7 +27,9 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initObserver()
+        PIK = intent.extras?.get(Constants.PARAM_PIK)?.toString() ?: ""
 
+        mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
         mapAuth["Content-Type"] = "application/json"
         mapAuth["Authorization"] = "Bearer $PIK"
     }
