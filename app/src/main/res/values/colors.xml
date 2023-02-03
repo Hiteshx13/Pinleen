@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#1d1e25</color>
     <color name="colorPrimaryVariant">#FFFFFF</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="blackTrans20">#33000000</color>
     <color name="blackTrans27">#272733</color>
@@ -10,7 +10,7 @@
     <color name="colorGray">#808D9E</color>
     <color name="colorGrayDark">#656565</color>
     <color name="colorBlackLight">#1E1E1E</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="colorRed">#FD443A</color>
     <color name="linkColor">#5d5be3</color>
     <color name="colorBlue">#1668E3</color>

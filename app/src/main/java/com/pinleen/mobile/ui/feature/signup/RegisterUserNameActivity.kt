@@ -41,7 +41,7 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
         binding.btnRegister.setOnClickListener {
             val fullName = "${binding.etFirstName.text} ${binding.etLastName.text}"
             val countryCode = "lv"//binding.etCountryCode.text.toString()
-            val mobile = binding.etMobile.text.toString()
+            val mobile = ""//binding.etMobile.text.toString()
             val params = RequestRegisterNameAndPhone(
                 fullName, countryCode, mobile
             )
@@ -115,7 +115,7 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
                 if (response.isSuccessful) {
                     PIK = response.body()?.pik ?: ""
                     val countryCode = "lv"//binding.etCountryCode.text.toString()
-                    val mobile = binding.etMobile.text.toString()
+                    val mobile = ""//binding.etMobile.text.toString()
                     val intent = VerifyMobileOTPActivity.getIntent(this@RegisterUserNameActivity)
                     intent.putExtra(Constants.PARAM_MOBILE, "$countryCode $mobile")
                     intent.putExtra(Constants.PARAM_PIK, PIK)
