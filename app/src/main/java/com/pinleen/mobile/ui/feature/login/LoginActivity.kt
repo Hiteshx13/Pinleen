@@ -25,6 +25,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         binding.btnSignIn.setOnClickListener {
 
         }
+        binding.tvForgotPassword.setOnClickListener {
+
+            launchActivity(ForgotPasswordActivity.getIntent(this))
+        }
+        binding.tvSignUp.setOnClickListener {
+
+        }
 
 
     }

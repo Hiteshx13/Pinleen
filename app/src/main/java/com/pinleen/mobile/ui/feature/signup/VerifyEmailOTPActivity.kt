@@ -64,7 +64,7 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
         binding.tvResend.setOnClickListener {
             binding.llResend.visibility = View.GONE
             binding.llCounter.visibility = View.VISIBLE
-            viewModel.callResendEmailOTP(mapAuth, RequestResendEmailOTP(EMAIL))
+            viewModel.callResendEmailOTP(mapAuth)
         }
     }
 

@@ -24,8 +24,7 @@ interface PinleenAPI {
 
     @PATCH("new-user")
     suspend fun callResendEmailOTP(
-        @HeaderMap headers: Map<String, String>,
-        @Body param: RequestResendEmailOTP
+        @HeaderMap headers: Map<String, String>
     ): Response<ResponseStartRegistration>
 
 

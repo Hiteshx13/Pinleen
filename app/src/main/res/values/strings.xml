@@ -56,5 +56,13 @@
     <string name="sign_in">Sign In</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="password">Password</string>
+    <string name="password_recovery">Password recovery</string>
+    <string name="enter_your_e_mail_address_to_recover_your_password">Enter your E-mail address to recover your password</string>
+    <string name="do_you_have_an_account">Do you have an account?</string>
+    <string name="log_in">Log in</string>
+    <string name="next">Next</string>
+    <string name="email_address">Email address</string>
+    <string name="choose_verification_method">Choose verification method</string>
+    <string name="we_ll_send_you_a_verification_code_to_reset_your_npassword">We’ll send you a verification code to reset your password</string>
 
 </resources>

@@ -49,11 +49,10 @@ class SignUpRepository {
             registerApi.verifyMobileOTP(mapAuth, param)
         }
     suspend fun callResendEmailOTP(
-        mapAuth: Map<String, String>,
-        param: RequestResendEmailOTP
+        mapAuth: Map<String, String>
     ) =
         withContext(Dispatchers.IO) {
-            registerApi.callResendEmailOTP(mapAuth,param)
+            registerApi.callResendEmailOTP(mapAuth)
         }
 }
 
