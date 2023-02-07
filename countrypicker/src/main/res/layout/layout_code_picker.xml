@@ -25,7 +25,7 @@
             app:srcCompat="@drawable/flag_india" />
 
         <!--</LinearLayout>-->
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_selectedCountry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:fontFamily="@font/nunito_sans_regular"
             android:singleLine="true"
             android:text="(IN) +91"
-            tools:textColor="@color/defaultContentColor"  />
+            android:textColor="@color/defaultContentColor"  />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView_arrow"

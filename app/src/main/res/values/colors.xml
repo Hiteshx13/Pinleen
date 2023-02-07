@@ -3,6 +3,7 @@
     <color name="colorPrimary">#1d1e25</color>
     <color name="colorPrimaryVariant">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="blackLight">#1C1C25</color>
     <color name="transparent">#00000000</color>
     <color name="blackTrans20">#33000000</color>
     <color name="blackTrans27">#272733</color>
@@ -16,6 +17,7 @@
     <color name="colorBlue">#1668E3</color>
     <color name="colorSecondaryPurple">#6764FF</color>
     <color name="colorPurple">#7B61FF</color>
+    <color name="colorPurpleClicked">#AB9FE4</color>
     <color name="colorGreenButton">#00E08F</color>
     <color name="colorGreenLight">#97D6BF</color>
     <color name="colorTransWhite10">#1AFFFFFF</color>

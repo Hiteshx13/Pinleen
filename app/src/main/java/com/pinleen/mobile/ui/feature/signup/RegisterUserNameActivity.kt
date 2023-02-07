@@ -40,12 +40,16 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
             val fullName = "${binding.etFirstName.text} ${binding.etLastName.text}"
-            val countryCode = "lv"//binding.etCountryCode.text.toString()
-            val mobile = ""//binding.etMobile.text.toString()
+            val countryCode = "+371 "//binding.etCountryCode.text.toString()
+            val mobile = binding.etMobile.text.toString()
             val params = RequestRegisterNameAndPhone(
                 fullName, countryCode, mobile
             )
-            viewModel.registerUserNameAndPhone(params, mapAuth)
+//            viewModel.registerUserNameAndPhone(params, mapAuth)
+            val intent = VerifyMobileOTPActivity.getIntent(this@RegisterUserNameActivity)
+            intent.putExtra(Constants.PARAM_MOBILE, "$countryCode $mobile")
+            intent.putExtra(Constants.PARAM_PIK, PIK)
+            launchActivity(intent)
 
         }
     }

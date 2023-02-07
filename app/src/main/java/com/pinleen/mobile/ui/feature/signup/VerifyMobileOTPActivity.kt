@@ -52,7 +52,8 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
 
     override fun initListener() {
         binding.btnConfirm.setOnClickListener {
-            validateAndCallVerifyOTP()
+//            validateAndCallVerifyOTP()
+            launchActivity(SignUpVerificationSuccessActivity.getIntent(this))
         }
 
         binding.ivback.setOnClickListener {

@@ -1,5 +1,7 @@
 package com.pinleen.mobile.ui.feature.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
@@ -9,6 +11,12 @@ import com.pinleen.mobile.ui.feature.signup.SignUpViewModel
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
+
+    companion object {
+        fun getIntent(mContext: Context): Intent {
+            return Intent(mContext, LoginActivity::class.java)
+        }
+    }
     private val viewModel: LoginViewModel by viewModels()
 
     val mapAuth = HashMap<String, String>()
@@ -23,7 +31,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun initListener() {
         binding.btnSignIn.setOnClickListener {
-
+            launchActivity(ForgotPasswordActivity.getIntent(this))
         }
         binding.tvForgotPassword.setOnClickListener {
 

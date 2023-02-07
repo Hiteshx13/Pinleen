@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.widget.AppCompatEditText
 import com.pinleen.mobile.R
-import com.pinleen.mobile.databinding.ActivityChooseVerificationBinding
+import com.pinleen.mobile.databinding.ActivitySetNewPasswordBinding
 import com.pinleen.mobile.ui.base.BaseActivity
 
 
-class ChooseVerificationActivity : BaseActivity<ActivityChooseVerificationBinding>() {
+class SetNewPasswordActivity : BaseActivity<ActivitySetNewPasswordBinding>() {
 
     companion object {
         fun getIntent(mContext: Context): Intent {
-            return Intent(mContext, ChooseVerificationActivity::class.java)
+            return Intent(mContext, SetNewPasswordActivity::class.java)
         }
     }
 
@@ -23,13 +23,16 @@ class ChooseVerificationActivity : BaseActivity<ActivityChooseVerificationBindin
         initObserver()
     }
 
-    override val bindingInflater: (LayoutInflater) -> ActivityChooseVerificationBinding
-        get() = ActivityChooseVerificationBinding::inflate
+    override val bindingInflater: (LayoutInflater) -> ActivitySetNewPasswordBinding
+        get() = ActivitySetNewPasswordBinding::inflate
 
     override fun initListener() {
 
-        binding.llButtonNext.setOnClickListener {
-        launchActivity(VerifyVerificationOTPActivity.getIntent(this))
+        binding.ivback.setOnClickListener {
+            finish()
+        }
+        binding.btnChangePassword.setOnClickListener {
+            launchActivity(PasswordChangedSuccessfulActivity.getIntent(this))
         }
         binding.etEmail.setOnClickListener {
             setState(binding.etEmail)

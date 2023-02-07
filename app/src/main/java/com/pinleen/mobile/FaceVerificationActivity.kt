@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import com.google.common.util.concurrent.ListenableFuture
 import com.pinleen.mobile.databinding.ActivityFaceVerificationBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.ui.feature.login.LoginActivity
 import com.pinleen.mobile.utils.*
 import com.pinleen.mobile.utils.Constants.REQUEST_CODE_CAMERA
 import com.pinleen.mobile.utils.PermissionManager.Permission
@@ -92,7 +93,7 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
         }
 
         binding.llButtonDone.setOnClickListener {
-
+            launchActivity(LoginActivity.getIntent(this))
         }
 
         binding.btnSelectPicture.setOnClickListener {
