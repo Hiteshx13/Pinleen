@@ -84,6 +84,7 @@ class VerifyEmailOTPActivity : BaseActivity<ActivityEmailOtpVerificationBinding>
 
         viewModel.responseResendEmailOTP.observe(this,
             { response ->
+                PIK=response.body()?.pik?:""
                 showMessageDialog(this, response?.message() ?: "")
             })
     }

@@ -28,7 +28,7 @@ interface PinleenAPI {
     ): Response<ResponseStartRegistration>
 
 
-    @POST("users/:uuid/name-phone")
+    @POST("users/name-phone")
     suspend fun registerUserNameAndPhone(
         @HeaderMap headers: Map<String, String>,
         @Body param: RequestRegisterNameAndPhone

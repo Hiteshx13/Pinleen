@@ -39,17 +39,16 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
 
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
-            val fullName = "${binding.etFirstName.text} ${binding.etLastName.text}"
-            val countryCode = "+371 "//binding.etCountryCode.text.toString()
+           // val fullName = "${binding.etFirstName.text} ${binding.etLastName.text}"
+            val countryInitials = binding.ccp.selectedCountryNameCode
             val mobile = binding.etMobile.text.toString()
             val params = RequestRegisterNameAndPhone(
-                fullName, countryCode, mobile
+                name_first = binding.etFirstName.text.toString(),
+                name_last = binding.etLastName.text.toString(),
+                country_initials = countryInitials.lowercase(),
+                phone_num = mobile
             )
-//            viewModel.registerUserNameAndPhone(params, mapAuth)
-            val intent = VerifyMobileOTPActivity.getIntent(this@RegisterUserNameActivity)
-            intent.putExtra(Constants.PARAM_MOBILE, "$countryCode $mobile")
-            intent.putExtra(Constants.PARAM_PIK, PIK)
-            launchActivity(intent)
+            viewModel.registerUserNameAndPhone(params, mapAuth)
 
         }
     }
@@ -118,8 +117,8 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
             { response ->
                 if (response.isSuccessful) {
                     PIK = response.body()?.pik ?: ""
-                    val countryCode = "lv"//binding.etCountryCode.text.toString()
-                    val mobile = ""//binding.etMobile.text.toString()
+                    val countryCode = binding.ccp.selectedCountryCode
+                    val mobile = binding.etMobile.text.toString()
                     val intent = VerifyMobileOTPActivity.getIntent(this@RegisterUserNameActivity)
                     intent.putExtra(Constants.PARAM_MOBILE, "$countryCode $mobile")
                     intent.putExtra(Constants.PARAM_PIK, PIK)
