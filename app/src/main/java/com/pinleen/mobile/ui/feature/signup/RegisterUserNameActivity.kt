@@ -39,17 +39,15 @@ class RegisterUserNameActivity : BaseActivity<ActivityRegisterUserNameBinding>()
 
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
-           // val fullName = "${binding.etFirstName.text} ${binding.etLastName.text}"
             val countryInitials = binding.ccp.selectedCountryNameCode
             val mobile = binding.etMobile.text.toString()
             val params = RequestRegisterNameAndPhone(
-                name_first = binding.etFirstName.text.toString(),
-                name_last = binding.etLastName.text.toString(),
+                first_name = binding.etFirstName.text.toString(),
+                last_name = binding.etLastName.text.toString(),
                 country_initials = countryInitials.lowercase(),
                 phone_num = mobile
             )
             viewModel.registerUserNameAndPhone(params, mapAuth)
-
         }
     }
 

@@ -34,7 +34,7 @@ interface PinleenAPI {
         @Body param: RequestRegisterNameAndPhone
     ): Response<ResponseStartRegistration>
 
-    @POST("users/:uuid/name-phone")
+    @PUT("users/name-phone")
     suspend fun verifyMobileOTP(
         @HeaderMap headers: Map<String, String>,
         @Body param: RequestVerifyMobileOTP
