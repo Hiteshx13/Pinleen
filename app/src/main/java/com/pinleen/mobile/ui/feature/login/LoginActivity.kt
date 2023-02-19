@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import com.pinleen.mobile.R
 import com.pinleen.mobile.databinding.ActivityLoginBinding
 import com.pinleen.mobile.ui.base.BaseActivity
-import com.pinleen.mobile.ui.feature.signup.SignUpViewModel
+import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
+import com.pinleen.mobile.utils.showMessageDialog
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
@@ -17,6 +19,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             return Intent(mContext, LoginActivity::class.java)
         }
     }
+
     private val viewModel: LoginViewModel by viewModels()
 
     val mapAuth = HashMap<String, String>()
@@ -31,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun initListener() {
         binding.btnSignIn.setOnClickListener {
-            launchActivity(ForgotPasswordActivity.getIntent(this))
+            validateAndLogin()
         }
         binding.tvForgotPassword.setOnClickListener {
 
@@ -45,7 +48,41 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
 
-    private fun initObserver() {
+    private fun validateAndLogin() {
+        viewModel.validateAndLogin(
+            binding.etEmail.text.toString(),
+            binding.etPassword.text.toString(), object : ValidEmailPasswordListener {
+                override fun isValid(
+                    isValidEmail: Boolean,
+                    isUppercase: Boolean,
+                    isLowercase: Boolean,
+                    isAnyNumber: Boolean,
+                    isPasswordLengthValid: Boolean
+                ) {
+                    if (!isValidEmail) {
+                        showMessageDialog(
+                            this@LoginActivity,
+                            getString(R.string.please_enter_valid_email)
+                        )
+                    } else if (!isUppercase || !isLowercase || !isAnyNumber || !isPasswordLengthValid) {
+                        showMessageDialog(
+                            this@LoginActivity,
+                            getString(R.string.please_enter_valid_password)
+                        )
+                    }
+                }
+            })
+    }
 
+    private fun initObserver() {
+        viewModel.responseLogin.observe(this, { response ->
+
+            if (response.isSuccessful) {
+                launchActivity(DashboardActivity.getIntent(this))
+            } else {
+                showMessageDialog(this, response.message())
+            }
+        }
+        )
     }
 }

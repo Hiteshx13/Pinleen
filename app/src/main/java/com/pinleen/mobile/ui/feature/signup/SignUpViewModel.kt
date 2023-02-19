@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.data.models.request.RequestRegisterNameAndPhone
-import com.pinleen.mobile.data.models.response.ResponseStartRegistration
+import com.pinleen.mobile.data.models.response.ResponsePIK
 import com.pinleen.mobile.utils.Constants.MAX_LENGTH_PASSWORD
 import com.pinleen.mobile.utils.Constants.MIN_LENGTH_PASSWORD
 import kotlinx.coroutines.launch
@@ -15,9 +15,10 @@ import retrofit2.Response
 class SignUpViewModel : ViewModel() {
 
     private val repository = SignUpRepository()
-    val responseRegister = MutableLiveData<Response<ResponseStartRegistration>>()
-    val responseRegisterEmail = MutableLiveData<Response<ResponseStartRegistration>>()
-    val responseNameAndPhone = MutableLiveData<Response<ResponseStartRegistration>>()
+    val responseRegister = MutableLiveData<Response<ResponsePIK>>()
+    val deleteAccount = MutableLiveData<Response<ResponsePIK>>()
+    val responseRegisterEmail = MutableLiveData<Response<ResponsePIK>>()
+    val responseNameAndPhone = MutableLiveData<Response<ResponsePIK>>()
 
     fun validateEmailPassword(
         email: String,
@@ -41,6 +42,11 @@ class SignUpViewModel : ViewModel() {
     fun register() {
         viewModelScope.launch {
             responseRegister.value = repository.register()
+        }
+    }
+    fun deleteAccount(email:String) {
+        viewModelScope.launch {
+            deleteAccount.value = repository.deleteAccount(email)
         }
     }
 

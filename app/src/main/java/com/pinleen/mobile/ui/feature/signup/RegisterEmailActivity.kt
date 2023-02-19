@@ -12,6 +12,7 @@ import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.utils.Constants.PARAM_EMAIL
 import com.pinleen.mobile.utils.Constants.PARAM_PIK
 import com.pinleen.mobile.utils.showMessageDialog
+import java.util.*
 
 
 class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
@@ -23,6 +24,7 @@ class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
         super.onCreate(savedInstanceState)
         initObserver()
         signUpViewModel.register()
+
     }
 
     override val bindingInflater: (LayoutInflater) -> ActivityRegisterEmailBinding
@@ -30,7 +32,8 @@ class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
 
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
-            validateAndCallSignUp()
+//            validateAndCallSignUp()
+            signUpViewModel.deleteAccount(binding.etEmail.text.toString() )
         }
     }
 
@@ -109,6 +112,11 @@ class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
                 } else {
                     showMessageDialog(this, response?.message() ?: "")
                 }
+            })
+
+        signUpViewModel.deleteAccount.observe(this,
+            { response ->
+                showMessageDialog(this, response?.message() ?: "")
             })
 
         signUpViewModel.responseRegisterEmail.observe(this,

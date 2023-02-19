@@ -1,7 +1,7 @@
 package com.pinleen.mobile.ui.feature.signup
 
 import com.pinleen.mobile.data.models.request.*
-import com.pinleen.mobile.data.models.response.ResponseStartRegistration
+import com.pinleen.mobile.data.models.response.ResponsePIK
 import com.pinleen.mobile.data.network.retrofit.PinleenAPI
 import com.pinleen.mobile.data.network.retrofit.RetrofitHelper
 import kotlinx.coroutines.Dispatchers
@@ -15,8 +15,11 @@ class SignUpRepository {
     val map = mapOf("cu-x-server" to "8jfy572hf74xfhhg23C343u5u2jfw3240")
 
 
-    suspend fun register(): Response<ResponseStartRegistration> = withContext(Dispatchers.IO) {
+    suspend fun register(): Response<ResponsePIK> = withContext(Dispatchers.IO) {
         registerApi.register(map)
+    }
+    suspend fun deleteAccount(email:String): Response<ResponsePIK> = withContext(Dispatchers.IO) {
+        registerApi.deleteAccount(email)
     }
 
     suspend fun registerEmailPassword(

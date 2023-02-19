@@ -3,20 +3,19 @@ package com.pinleen.mobile.ui.feature.signup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pinleen.mobile.data.models.request.RequestResendEmailOTP
 import com.pinleen.mobile.data.models.request.RequestVerifyEmailOTP
 import com.pinleen.mobile.data.models.request.RequestVerifyMobileOTP
-import com.pinleen.mobile.data.models.response.ResponseStartRegistration
+import com.pinleen.mobile.data.models.response.ResponsePIK
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class SignUpVerificationViewModel : ViewModel() {
 
     private val repository = SignUpRepository()
-    val responseVerifyEmailOTP = MutableLiveData<Response<ResponseStartRegistration>>()
-    val responseResendEmailOTP = MutableLiveData<Response<ResponseStartRegistration>>()
-    val responseVerifyMobileOTP = MutableLiveData<Response<ResponseStartRegistration>>()
-    val responseResendMobileOTP = MutableLiveData<Response<ResponseStartRegistration>>()
+    val responseVerifyEmailOTP = MutableLiveData<Response<ResponsePIK>>()
+    val responseResendEmailOTP = MutableLiveData<Response<ResponsePIK>>()
+    val responseVerifyMobileOTP = MutableLiveData<Response<ResponsePIK>>()
+    val responseResendMobileOTP = MutableLiveData<Response<ResponsePIK>>()
 
     fun validateOTP(
         otp: String
