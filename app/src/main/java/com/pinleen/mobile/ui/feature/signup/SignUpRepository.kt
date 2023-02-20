@@ -57,5 +57,12 @@ class SignUpRepository {
         withContext(Dispatchers.IO) {
             registerApi.callResendEmailOTP(mapAuth)
         }
+
+    suspend fun callResendMobileOTP(
+        mapAuth: Map<String, String>
+    ) =
+        withContext(Dispatchers.IO) {
+            registerApi.callResendMobileOTP(mapAuth)
+        }
 }
 

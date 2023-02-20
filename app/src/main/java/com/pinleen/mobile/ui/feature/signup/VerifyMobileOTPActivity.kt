@@ -44,7 +44,7 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
         lifecycleScope.launchWhenCreated {
             tickerFlow()
         }
-
+//4evCPzY............kRfRsp46Vo
         mapAuth["cu-x-server"] = "8jfy572hf74xfhhg23C343u5u2jfw3240"
         mapAuth["Content-Type"] = "application/json"
         mapAuth["Authorization"] = "Bearer $PIK"
@@ -53,7 +53,6 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
     override fun initListener() {
         binding.btnConfirm.setOnClickListener {
             validateAndCallVerifyOTP()
-//            launchActivity(SignUpVerificationSuccessActivity.getIntent(this))
         }
 
         binding.ivback.setOnClickListener {
@@ -62,8 +61,8 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
         binding.tvResend.setOnClickListener {
             binding.llResend.visibility = View.GONE
             binding.llCounter.visibility = View.VISIBLE
-           // viewModel.callResendEmailOTP(mapAuth)
-
+            mapAuth["Authorization"] = "Bearer $PIK"
+            viewModel.callResendMobileOTP(mapAuth)
         }
     }
 
@@ -79,6 +78,9 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
 
         viewModel.responseResendMobileOTP.observe(this,
             { response ->
+                if (response.isSuccessful) {
+                    PIK = response.body()?.pik ?: ""
+                }
                 showMessageDialog(this, response?.message() ?: "")
             })
     }
@@ -110,6 +112,8 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
 
 
     private fun validateAndCallVerifyOTP() {
+
+        mapAuth["Authorization"] = "Bearer $PIK"
         val passOne = binding.edtPasscode1.text
         val passTwo = binding.edtPasscode2.text
         val passThree = binding.edtPasscode3.text

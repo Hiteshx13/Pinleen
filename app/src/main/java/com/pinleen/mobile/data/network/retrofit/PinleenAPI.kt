@@ -30,6 +30,11 @@ interface PinleenAPI {
         @HeaderMap headers: Map<String, String>
     ): Response<ResponsePIK>
 
+  @PATCH("users/name-phone")
+    suspend fun callResendMobileOTP(
+        @HeaderMap headers: Map<String, String>
+    ): Response<ResponsePIK>
+
 
     @POST("users/name-phone")
     suspend fun registerUserNameAndPhone(

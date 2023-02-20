@@ -51,7 +51,6 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun registerEmailPassword(param: RequestRegisterEmail, mapAuth: Map<String, String>) {
-
         viewModelScope.launch {
             responseRegisterEmail.value = repository.registerEmailPassword(param, mapAuth)
         }

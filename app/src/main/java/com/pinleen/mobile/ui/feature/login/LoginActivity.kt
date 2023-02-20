@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.pinleen.mobile.R
 import com.pinleen.mobile.databinding.ActivityLoginBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.ui.feature.signup.RegisterEmailActivity
 import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
 import com.pinleen.mobile.utils.showMessageDialog
 
@@ -37,14 +38,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             validateAndLogin()
         }
         binding.tvForgotPassword.setOnClickListener {
-
             launchActivity(ForgotPasswordActivity.getIntent(this))
         }
         binding.tvSignUp.setOnClickListener {
-
+            launchActivity(RegisterEmailActivity.getIntent(this))
         }
-
-
     }
 
 

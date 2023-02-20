@@ -1,5 +1,7 @@
 package com.pinleen.mobile.ui.feature.signup
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import com.pinleen.mobile.R
 import com.pinleen.mobile.data.models.request.RequestRegisterEmail
 import com.pinleen.mobile.databinding.ActivityRegisterEmailBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.ui.feature.login.LoginActivity
 import com.pinleen.mobile.utils.Constants.PARAM_EMAIL
 import com.pinleen.mobile.utils.Constants.PARAM_PIK
 import com.pinleen.mobile.utils.showMessageDialog
@@ -16,6 +19,13 @@ import java.util.*
 
 
 class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
+
+    companion object {
+        fun getIntent(mContext: Context): Intent {
+            return Intent(mContext, RegisterEmailActivity::class.java)
+        }
+    }
+
     private val signUpViewModel: SignUpViewModel by viewModels()
     private var PIK = ""
     val mapAuth = HashMap<String, String>()
@@ -32,8 +42,8 @@ class RegisterEmailActivity : BaseActivity<ActivityRegisterEmailBinding>() {
 
     override fun initListener() {
         binding.btnRegister.setOnClickListener {
-//            validateAndCallSignUp()
-            signUpViewModel.deleteAccount(binding.etEmail.text.toString() )
+            validateAndCallSignUp()
+//            signUpViewModel.deleteAccount(binding.etEmail.text.toString() )
         }
     }
 

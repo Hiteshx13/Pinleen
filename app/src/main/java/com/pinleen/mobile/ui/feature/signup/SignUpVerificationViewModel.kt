@@ -43,5 +43,11 @@ class SignUpVerificationViewModel : ViewModel() {
             responseResendEmailOTP.value = repository.callResendEmailOTP(mapAuth)
         }
     }
+
+    fun callResendMobileOTP(mapAuth: Map<String, String> ) {
+        viewModelScope.launch {
+            responseResendMobileOTP.value = repository.callResendMobileOTP(mapAuth)
+        }
+    }
 }
 
