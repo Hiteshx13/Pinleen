@@ -49,16 +49,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/blackTrans20"
-                app:ccpDialog_textColor="@color/white"
                 app:ccp_autoDetectCountry="true"
+                app:ccp_countryAutoDetectionPref="NETWORK_SIM"
+                app:ccp_textSize="@dimen/_14ssp" />
+
+            <!--    app:ccpDialog_textColor="@color/white"
                 app:ccp_autoFormatNumber="true"
                 app:ccp_contentColor="@color/colorGray"
                 app:ccp_rippleEnable="true"
                 app:ccpDialog_fastScroller_bubbleTextAppearance="@color/black"
                 app:ccpDialog_background="@color/blackTrans20"
                 app:ccp_arrowColor="@color/colorGray"
-                app:ccp_textSize="@dimen/_14ssp" />
-
+                app:ccp_autoDetectCountry="true"
+                app:ccp_countryAutoDetectionPref="NETWORK_SIM"-->
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etMobile"
                 style="@style/EditTextSignUp"

@@ -10,4 +10,6 @@
     <dimen name="fastscroll__handle_inset">9dp</dimen>
     <dimen name="fastscroll__handle_clickable_width">24dp</dimen>
     <dimen name="fastscroll__handle_padding">2dp</dimen>
+    <dimen name="country_flag_width">@dimen/_25sdp</dimen>
+    <dimen name="country_flag_height">@dimen/_17sdp</dimen>
 </resources>

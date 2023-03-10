@@ -3,9 +3,11 @@ package com.pinleen.mobile.ui.feature.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import com.pinleen.mobile.R
 import com.pinleen.mobile.data.models.request.RequestVerifyMobileOTP
@@ -13,10 +15,13 @@ import com.pinleen.mobile.databinding.ActivityMobileOtpVerificationBinding
 import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.utils.Constants.PARAM_MOBILE
 import com.pinleen.mobile.utils.Constants.PARAM_PIK
+import com.pinleen.mobile.utils.Constants.REQUEST_CODE_SMS
+import com.pinleen.mobile.utils.SMSListener
 import com.pinleen.mobile.utils.TextWatcher
 import com.pinleen.mobile.utils.showMessageDialog
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.ticker
+import java.util.*
 
 
 class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBinding>() {
@@ -37,6 +42,12 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
 
         PIK = intent.extras?.get(PARAM_PIK)?.toString() ?: ""
         binding.tvMobile.text = intent.extras?.get(PARAM_MOBILE)?.toString()
+
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.RECEIVE_SMS),
+            REQUEST_CODE_SMS
+        )
 
         initObserver()
         setFocus()
@@ -64,6 +75,16 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
             mapAuth["Authorization"] = "Bearer $PIK"
             viewModel.callResendMobileOTP(mapAuth)
         }
+
+
+
+        SMSListener.bindListener(object :
+            SMSListener.Companion.Common.OTPListener {
+            override fun onOTPReceived(otp: String) {
+                Log.d("PINLEENOTP", "$otp")
+                showToast(otp)
+            }
+        })
     }
 
     private fun initObserver() {
@@ -130,4 +151,9 @@ class VerifyMobileOTPActivity : BaseActivity<ActivityMobileOtpVerificationBindin
 
     override val bindingInflater: (LayoutInflater) -> ActivityMobileOtpVerificationBinding
         get() = ActivityMobileOtpVerificationBinding::inflate
+
+    override fun onDestroy() {
+        SMSListener.unbindListener()
+        super.onDestroy()
+    }
 }

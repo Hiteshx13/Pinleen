@@ -10,7 +10,8 @@ object Constants {
     const val MAX_LENGTH_PASSWORD = 30
 
     const val REQUEST_CODE_CAMERA = 10
-    const val REQUEST_CODE_GALLERY = 21
+    const val REQUEST_CODE_GALLERY = 11
+    const val REQUEST_CODE_SMS = 12
 
     const val CLICK_GALLERY = 1
     const val CLICK_CAMERA = 2

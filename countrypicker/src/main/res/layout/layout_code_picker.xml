@@ -18,9 +18,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_flag"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/country_flag_width"
+            android:layout_height="@dimen/country_flag_height"
+
             android:layout_margin="0.5dp"
+            android:scaleType="fitXY"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/flag_india" />
 
