@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class LoginRepository {
 
-    private val registerApi: PinleenAPI =
+    private val loginApi: PinleenAPI =
         RetrofitHelper.getInstance().create(PinleenAPI::class.java)
 
 
@@ -20,7 +20,7 @@ class LoginRepository {
         mapAuth: Map<String, String>
     ) =
         withContext(Dispatchers.IO) {
-            registerApi.login(mapAuth, param)
+            loginApi.login(mapAuth, param)
         }
 
 }

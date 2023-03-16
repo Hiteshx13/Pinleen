@@ -35,7 +35,11 @@ android {
     dataBinding{
         enabled=true
     }
+    configurations {
+        all*.exclude group: 'xpp3', module: 'xpp3'
+    }
 }
+
 
 dependencies {
 
@@ -72,4 +76,14 @@ dependencies {
     // SP DP for different screen size
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
+    //XMPP
+    implementation "org.igniterealtime.smack:smack-android:4.4.0"
+    // Optional for XMPPTCPConnection
+    implementation "org.igniterealtime.smack:smack-tcp:4.4.0"
+    // Optional for XMPP-IM (RFC 6121) support (Roster, Threaded Chats, …)
+    implementation "org.igniterealtime.smack:smack-im:4.4.0"
+    // Optional for XMPP extensions support
+    implementation "org.igniterealtime.smack:smack-extensions:4.4.0"
+
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pinleen.mobile.data.models.request.RequestLogin
+import com.pinleen.mobile.data.models.response.ResponseLogin
 import com.pinleen.mobile.data.models.response.ResponsePIK
 import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
 import com.pinleen.mobile.utils.Constants.MAX_LENGTH_PASSWORD
@@ -15,7 +16,7 @@ import retrofit2.Response
 class LoginViewModel : ViewModel() {
 
     private val repository = LoginRepository()
-     val responseLogin = MutableLiveData<Response<ResponsePIK>>()
+     val responseLogin = MutableLiveData<Response<ResponseLogin>>()
     val mapAuth = HashMap<String, String>()
 
     init {

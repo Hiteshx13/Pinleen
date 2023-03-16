@@ -5,11 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import com.google.gson.Gson
 import com.pinleen.mobile.R
 import com.pinleen.mobile.databinding.ActivityLoginBinding
 import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.ui.feature.signup.RegisterEmailActivity
 import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
+import com.pinleen.mobile.utils.Constants.PREF_IS_LOGGED_IN
+import com.pinleen.mobile.utils.Constants.PREF_USER_LOGIN_DATA
+import com.pinleen.mobile.utils.PreferenceHelper
 import com.pinleen.mobile.utils.showMessageDialog
 
 
@@ -76,6 +80,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         viewModel.responseLogin.observe(this, { response ->
 
             if (response.isSuccessful) {
+                PreferenceHelper.setBoolean(this, PREF_IS_LOGGED_IN, true)
+                PreferenceHelper.setString(this,PREF_USER_LOGIN_DATA, Gson().toJson(response.body()?.user_data))
+
                 launchActivity(DashboardActivity.getIntent(this))
             } else {
                 showMessageDialog(this, response.message())

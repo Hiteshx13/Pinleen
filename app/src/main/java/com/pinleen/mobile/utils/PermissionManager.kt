@@ -126,6 +126,7 @@ class PermissionManager private constructor(private val fragment: WeakReference<
         // Grouped permissions
         object Location : Permission(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
         object Storage : Permission(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
+        object ReadContacts : Permission(READ_CONTACTS)
 
 
         companion object {
@@ -133,6 +134,7 @@ class PermissionManager private constructor(private val fragment: WeakReference<
                 ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION -> Location
                 WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE -> Storage
                 CAMERA -> Camera
+                READ_CONTACTS -> ReadContacts
                 else -> throw IllegalArgumentException("Unknown permission: $permission")
             }
         }

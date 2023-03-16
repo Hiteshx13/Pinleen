@@ -1,11 +1,15 @@
 package com.pinleen.mobile.ui.base
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import org.jivesoftware.smack.android.AndroidSmackInitializer
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
@@ -20,7 +24,10 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         _viewBinding = bindingInflater(layoutInflater)
         setContentView(_viewBinding!!.root)
         initListener()
+        AndroidSmackInitializer.initialize(this);
+
     }
+
 
 
     abstract fun initListener()
@@ -35,6 +42,14 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun openAppSettings(){
+        val intent =
+            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivity(intent)
     }
 
 }

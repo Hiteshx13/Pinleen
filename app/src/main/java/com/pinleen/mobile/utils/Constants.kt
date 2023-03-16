@@ -6,6 +6,10 @@ object Constants {
     const val PARAM_MOBILE = "MOBILE"
     const val PARAM_PIK = "pik"
 
+    const val PREF_IS_LOGGED_IN = "is_logged_in"
+    const val PREF_IS_PRIVACY_POLICY_SHOWN = "is_privacy_policy_shown"
+    const val PREF_USER_LOGIN_DATA = "user_login_data"
+
     const val MIN_LENGTH_PASSWORD = 6
     const val MAX_LENGTH_PASSWORD = 30
 

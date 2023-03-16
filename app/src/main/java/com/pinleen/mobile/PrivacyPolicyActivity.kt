@@ -1,5 +1,6 @@
 package com.pinleen.mobile
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,10 +14,17 @@ import android.view.View
 import com.pinleen.mobile.databinding.ActivityPrivacyPolicyBinding
 import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.ui.feature.login.LoginActivity
-import com.pinleen.mobile.ui.feature.signup.RegisterEmailActivity
+import com.pinleen.mobile.utils.Constants
+import com.pinleen.mobile.utils.PreferenceHelper
 
 
 class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
+    companion object {
+        fun getIntent(mContext: Context): Intent {
+            return Intent(mContext, PrivacyPolicyActivity::class.java)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +54,7 @@ class PrivacyPolicyActivity : BaseActivity<ActivityPrivacyPolicyBinding>() {
 
     override fun initListener() {
         binding.btnAgreeAndContinue.setOnClickListener {
+            PreferenceHelper.setBoolean(this, Constants.PREF_IS_PRIVACY_POLICY_SHOWN, true)
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

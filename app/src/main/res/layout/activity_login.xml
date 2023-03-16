@@ -54,7 +54,7 @@
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="@dimen/_10sdp"
             android:hint="@string/email"
-            android:text="droid10@mailinator.com"
+            android:text="a1@mailinator.com"
             android:inputType="textEmailAddress" />
 
         <androidx.appcompat.widget.AppCompatEditText

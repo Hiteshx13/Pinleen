@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:gravity="bottom|center_horizontal"
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-
         <LinearLayout
+            android:id="@+id/llBottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -50,5 +50,12 @@
                 app:tint="@drawable/selector_color_gray_green" />
         </LinearLayout>
 
-    </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContacts"
+            android:padding="@dimen/_10sdp"
+            android:layout_above="@+id/llBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.pinleen.mobile.data.network.retrofit
 
 import com.pinleen.mobile.data.models.request.*
+import com.pinleen.mobile.data.models.response.ResponseLogin
 import com.pinleen.mobile.data.models.response.ResponsePIK
 import retrofit2.Response
 import retrofit2.http.*
@@ -52,6 +53,6 @@ interface PinleenAPI {
     suspend fun login(
         @HeaderMap headers: Map<String, String>,
         @Body param: RequestLogin
-    ): Response<ResponsePIK>
+    ): Response<ResponseLogin>
 
 }
