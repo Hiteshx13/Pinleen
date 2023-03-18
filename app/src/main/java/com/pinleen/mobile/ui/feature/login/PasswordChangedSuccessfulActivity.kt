@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.pinleen.mobile.databinding.ActivityPasseordChangeSuccessBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.ui.feature.dashboard.DashboardActivity
 
 
 class PasswordChangedSuccessfulActivity : BaseActivity<ActivityPasseordChangeSuccessBinding>() {

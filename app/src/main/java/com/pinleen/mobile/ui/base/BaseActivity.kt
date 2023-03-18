@@ -44,12 +44,6 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    fun openAppSettings(){
-        val intent =
-            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", packageName, null)
-        intent.data = uri
-        startActivity(intent)
-    }
+
 
 }

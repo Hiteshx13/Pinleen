@@ -49,13 +49,14 @@
                 android:src="@drawable/ic_home_me"
                 app:tint="@drawable/selector_color_gray_green" />
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvContacts"
-            android:padding="@dimen/_10sdp"
-            android:layout_above="@+id/llBottom"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            android:layout_above="@+id/llBottom"
+            app:navGraph="@navigation/nav_graph" />
 
     </RelativeLayout>
 </layout>

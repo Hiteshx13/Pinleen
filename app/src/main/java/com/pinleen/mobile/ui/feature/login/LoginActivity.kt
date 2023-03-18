@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.pinleen.mobile.R
 import com.pinleen.mobile.databinding.ActivityLoginBinding
 import com.pinleen.mobile.ui.base.BaseActivity
+import com.pinleen.mobile.ui.feature.dashboard.DashboardActivity
 import com.pinleen.mobile.ui.feature.signup.RegisterEmailActivity
 import com.pinleen.mobile.ui.feature.signup.ValidEmailPasswordListener
 import com.pinleen.mobile.utils.Constants.PREF_IS_LOGGED_IN

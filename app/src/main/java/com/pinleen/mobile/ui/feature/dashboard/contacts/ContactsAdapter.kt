@@ -1,4 +1,4 @@
-package com.pinleen.mobile.ui.feature.dashboard
+package com.pinleen.mobile.ui.feature.dashboard.contacts
 
 
 import android.content.Context

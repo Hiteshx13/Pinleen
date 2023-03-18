@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,9 +20,9 @@ import com.google.common.util.concurrent.ListenableFuture
 import com.pinleen.mobile.databinding.ActivityFaceVerificationBinding
 import com.pinleen.mobile.ui.base.BaseActivity
 import com.pinleen.mobile.ui.feature.login.LoginActivity
-import com.pinleen.mobile.utils.*
 import com.pinleen.mobile.utils.Constants.REQUEST_CODE_CAMERA
-import com.pinleen.mobile.utils.PermissionManager.Permission
+import com.pinleen.mobile.utils.ItemClickCameraDialog
+import com.pinleen.mobile.utils.showImageSelectionDialog
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -37,7 +35,6 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
         }
     }
 
-    private val permissionManager = PermissionManager.from(this)
     private var lensFacing = CameraSelector.DEFAULT_BACK_CAMERA
     private val cameraProviderFuture: ListenableFuture<ProcessCameraProvider> by lazy {
         ProcessCameraProvider.getInstance(this)
@@ -104,31 +101,39 @@ class FaceVerificationActivity : BaseActivity<ActivityFaceVerificationBinding>()
                 }
 
                 override fun onClickCamera() {
-                    permissionManager
-                        .request(Permission.Camera)
-                        .rationale(getString(R.string.message_camera_permission))
-                        .checkDetailedPermission { result: Map<Permission, Boolean> ->
-                            if (result.all { it.value }) {
-                                startCamera()
-                                binding.llSelectPicture.visibility = View.GONE
-                                binding.llCameraOverlay.visibility = View.VISIBLE
-                                binding.viewCameraPreview.visibility = View.VISIBLE
-                            } else {
-                                showRationalMessageDialog(
-                                    baseContext,
-                                    getString(R.string.please_grant_all_required_permission_from_application_settings),
-                                    object : ItemClickListener {
-                                        override fun onClick() {
-                                            val intent =
-                                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                                            val uri = Uri.fromParts("package", packageName, null)
-                                            intent.data = uri
-                                            startActivity(intent)
-                                        }
-                                    }
-                                )
-                            }
-                        }
+//                    val permissionHelper = PermissionHelper(this@FaceVerificationActivity, object : PermissionHelper.PermissionListener {
+//                        override fun shouldShowRationaleInfo() {
+//
+//                        }
+//
+//                        override fun isPermissionGranted(isGranted: Boolean) {
+//                            if (isGranted) {
+//                                startCamera()
+//                                binding.llSelectPicture.visibility = View.GONE
+//                                binding.llCameraOverlay.visibility = View.VISIBLE
+//                                binding.viewCameraPreview.visibility = View.VISIBLE
+//
+//                            } else {
+//                                showRationalMessageDialog(
+//                                    baseContext,
+//                                    getString(R.string.please_grant_all_required_permission_from_application_settings),
+//                                    object : ItemClickListener {
+//                                        override fun onClick() {
+//                                            val intent =
+//                                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+//                                            val uri = Uri.fromParts("package", packageName, null)
+//                                            intent.data = uri
+//                                            startActivity(intent)
+//                                        }
+//                                    }
+//                                )
+//                            }
+//                        }
+//                    })
+//
+//                    permissionHelper.checkForPermissions(Manifest.permission.READ_CONTACTS)
+
+
                 }
             })
         }

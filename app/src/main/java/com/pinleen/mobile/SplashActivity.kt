@@ -6,7 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import com.pinleen.mobile.databinding.ActivitySplashBinding
 import com.pinleen.mobile.ui.base.BaseActivity
-import com.pinleen.mobile.ui.feature.login.DashboardActivity
+import com.pinleen.mobile.ui.feature.dashboard.DashboardActivity
 import com.pinleen.mobile.ui.feature.login.LoginActivity
 import com.pinleen.mobile.utils.Constants
 import com.pinleen.mobile.utils.PreferenceHelper

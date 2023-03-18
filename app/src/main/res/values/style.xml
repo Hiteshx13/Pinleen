@@ -143,5 +143,25 @@
         <item name="android:background">@drawable/bg_button_black_light_rounded</item>
     </style>
 
+    <style name="TextChatReceiver">
+        <item name="android:textColor">@color/colorBlackLight</item>
+        <item name="android:background">@drawable/bg_button_gray_rounded</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+        <item name="android:paddingTop">@dimen/_5sdp</item>
+        <item name="android:paddingBottom">@dimen/_5sdp</item>
+        <item name="android:fontFamily">@font/nunito_sans_regular</item>
+    </style>
+
+    <style name="TextChatSender">
+        <item name="android:textColor">@color/colorBlackLight</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+        <item name="android:paddingTop">@dimen/_5sdp</item>
+        <item name="android:paddingBottom">@dimen/_5sdp</item>
+        <item name="android:background">@drawable/bg_button_green_rounded</item>
+        <item name="android:fontFamily">@font/nunito_sans_regular</item>
+    </style>
+
 
 </resources>
