@@ -1,5 +1,6 @@
 package com.pinleen.mobile.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,4 +37,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         super.onDestroyView()
         _bi = null
     }
+
+    fun showToast( message: String) {
+       Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    }
+
 }
