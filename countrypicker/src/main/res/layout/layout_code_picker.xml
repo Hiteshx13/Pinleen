@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlClickConsumer"
+    android:layout_width="wrap_content"
+    android:background="@color/colorPrimary"
+    android:paddingBottom="@dimen/_15sdp"
+    android:paddingTop="@dimen/_15sdp"
+    android:paddingStart="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_5sdp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_flag"
+            android:layout_width="@dimen/country_flag_width"
+            android:layout_height="@dimen/country_flag_height"
+
+            android:layout_margin="0.5dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/flag_india" />
+
+        <!--</LinearLayout>-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_selectedCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:singleLine="true"
+            android:text="(IN) +91"
+            android:textColor="@color/defaultContentColor"  />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:alpha="0.6"
+            app:srcCompat="@drawable/ccp_ic_arrow_drop_down"
+            app:tint="@color/colorGray" />
+
+    </LinearLayout>
+</RelativeLayout>

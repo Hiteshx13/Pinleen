@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:id="@+id/llBottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_home_shop"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_home_shop"
+                app:tint="@drawable/selector_color_gray_green" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_home_chat"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_home_chat"
+                app:tint="@drawable/selector_color_gray_green" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_home_contacts"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_home_contacts"
+                app:tint="@drawable/selector_color_gray_green" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_home_me"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_home_me"
+                app:tint="@drawable/selector_color_gray_green" />
+        </LinearLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            android:layout_above="@+id/llBottom"
+            app:navGraph="@navigation/nav_graph" />
+
+    </RelativeLayout>
+</layout>

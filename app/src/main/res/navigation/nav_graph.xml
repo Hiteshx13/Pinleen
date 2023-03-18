@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shopFragment">
+
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.pinleen.mobile.ui.feature.dashboard.chat.ChatFragment"
+        android:label="ChatFragment" >
+        <action
+            android:id="@+id/action_chatFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_shopFragment"
+            app:destination="@id/shopFragment" />
+
+        <action
+            android:id="@+id/action_chatFragment_to_meFragment"
+            app:destination="@id/meFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.pinleen.mobile.ui.feature.dashboard.contacts.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/action_contactsFragment_to_meFragment"
+            app:destination="@id/meFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_shopFragment"
+            app:destination="@id/shopFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="com.pinleen.mobile.ui.feature.dashboard.shop.ShopFragment"
+        android:label="ShopFragment" >
+        <action
+            android:id="@+id/action_shopFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_shopFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_shopFragment_to_meFragment"
+            app:destination="@id/meFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/meFragment"
+        android:name="com.pinleen.mobile.ui.feature.dashboard.me.MeFragment"
+        android:label="MeFragment" >
+        <action
+            android:id="@+id/action_meFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_meFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+
+        <action
+            android:id="@+id/action_meFragment_to_shopFragment"
+            app:destination="@id/shopFragment" />
+
+    </fragment>
+</navigation>
